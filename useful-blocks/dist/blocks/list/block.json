@@ -1,4 +1,5 @@
 {
+  "apiVersion": 2,
   "name": "ponhiro-blocks/list",
   "title": "Useful List",
   "category": "useful-blocks",
@@ -12,6 +13,7 @@
   ],
   "parent": [
     "ponhiro-blocks/cv-box",
+    "ponhiro-blocks/iconbox",
     "ponhiro-blocks/compare-box-body-content"
   ],
   "attributes": {
@@ -22,11 +24,6 @@
     "icon": {
       "type": "string",
       "default": "dot"
-    },
-    "listItems": {
-      "type": "array",
-      "source": "children",
-      "selector": ".pb-list"
     },
     "showBorder": {
       "type": "boolean",

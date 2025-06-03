@@ -7,21 +7,22 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * ブロックの登録
  */
 add_action( 'init', function() {
-	pb_register_block_type( 'cv-box' );
-	pb_register_block_type( 'cv-box-note' );
-	pb_register_block_type( 'compare-box' );
-	pb_register_block_type( 'iconbox' );
-	pb_register_block_type( 'list' );
-	pb_register_block_type( 'button' );
-	pb_register_block_type( 'image' );
-	pb_register_block_type( 'bar-graph' );
-	pb_register_block_type( 'bar-graph-item' );
-
-	// 5.6以降でのみ使用可能なブロック(api v2 使用)
-	global $wp_version;
-	if ( version_compare( $wp_version, '5.6.RC1' ) >= 0 ) {
-		pb_register_block_type( 'rating-graph' );
-		pb_register_block_type( 'rating-graph-item' );
+	$blocks = [
+		'cv-box',
+		'cv-box-note',
+		'compare-box',
+		'iconbox',
+		'list',
+		'list-item',
+		'button',
+		'image',
+		'bar-graph',
+		'bar-graph-item',
+		'rating-graph',
+		'rating-graph-item',
+	];
+	foreach( $blocks as $block ) {
+		pb_register_block_type( $block );
 	}
 });
 
@@ -80,3 +81,17 @@ add_filter( $hookname, function( $categories ) {
 
 	return $categories;
 } );
+
+/**
+ * リストブロックで空のulタグを出力しない
+ */
+add_filter( 'render_block_ponhiro-blocks/list', function ( $block_content, $block ) {
+	$is_empty = true;
+	foreach ( $block['innerBlocks'] as $inner_block ) {
+		if ( ! empty( $inner_block['innerHTML'] ) ) {
+			$is_empty = false;
+			break;
+		}
+	}
+	return $is_empty ? null : $block_content;
+}, 10, 2 );

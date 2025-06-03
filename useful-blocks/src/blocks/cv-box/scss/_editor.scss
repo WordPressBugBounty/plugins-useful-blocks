@@ -56,7 +56,7 @@
 
 
 // サイドバー
-.edit-post-sidebar {
+:is(.edit-post-sidebar, .editor-sidebar) {
 
 	.pb-panel--colorSet {
 

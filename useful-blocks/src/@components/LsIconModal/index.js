@@ -33,7 +33,6 @@ const ICON_NAMESPACE = '__PONHIRO_ICONS__';
  * TEXT
  */
 const TEXTS = {
-	style: __('Style', textDomain),
 	select: __('Select icon', textDomain),
 	search: __('Search icon', textDomain),
 	nofound: __('Icon not found.', textDomain),
@@ -131,22 +130,6 @@ const IconPickerTab = ({ value = '', onChange, searchValue }) => {
 			{(tab) => {
 				return (
 					<>
-						{/* <ButtonGroup className='__iconStyles'>
-							<span className='__label'>{TEXTS.style} : </span>
-							{iconStyleOptions.map((_style, idx) => {
-								return (
-									<Button
-										key={idx}
-										variant={_style.value === iconType ? 'primary' : ''}
-										onClick={() => {
-											setIconType(_style.value);
-										}}
-									>
-										{_style.label}
-									</Button>
-								);
-							})}
-						</ButtonGroup> */}
 						{(() => {
 							if (filteredIcons) {
 								return filteredIcons.length ? (

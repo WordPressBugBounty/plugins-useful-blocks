@@ -63,7 +63,7 @@ registerBlockType(name, {
 							templateLock={'all'}
 							template={[
 								['ponhiro-blocks/image', {}, []],
-								['ponhiro-blocks/list', { icon: 'check' }, []],
+								['ponhiro-blocks/list', { icon: 'check' }],
 								['ponhiro-blocks/button', {}, []],
 								['ponhiro-blocks/cv-box-note', {}, []],
 							]}

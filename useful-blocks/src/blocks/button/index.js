@@ -64,8 +64,8 @@ registerBlockType(name, {
 			default: __('必見', textDomain),
 		},
 		btnText: {
-			type: 'array',
-			source: 'children',
+			type: 'string',
+			source: 'html',
 			selector: '.pb-button__text',
 		},
 		linkLabel: {

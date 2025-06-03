@@ -3,7 +3,7 @@
  * Plugin Name: Useful Blocks
  * Plugin URI: https://ponhiro.com/useful-blocks/
  * Description: It is a plugin that collects very convenient blocks.
- * Version: 1.7.4
+ * Version: 1.8.1
  * Requires at least: 5.9
  * Author: Ponhiro, Ryo
  * Author URI: https://ponhiro.com/useful-blocks/
@@ -51,20 +51,29 @@ class Ponhiro_Blocks extends \Ponhiro_Blocks\Data {
 	public function __construct() {
 		if ( ! defined( 'USFL_BLKS_IS_PRO' ) ) define( 'USFL_BLKS_IS_PRO', false );
 	
-			// データセット
-			self::set_variables();
-			add_action( 'init', [ __CLASS__, 'set_settings' ], 10 );
+		/**
+		 * 翻訳ファイルの読み込み
+		 */ 
 
-			// ファイル読み込み
-			require_once USFL_BLKS_PATH . 'inc/register_blocks.php';
-			require_once USFL_BLKS_PATH . 'inc/enqueue.php';
-			require_once USFL_BLKS_PATH . 'inc/ajax.php';
-			require_once USFL_BLKS_PATH . 'inc/hooks.php';
+		add_action( 'init', function() {
+			// 	load_textdomain( 'useful-blocks', USFL_BLKS_PATH . 'languages/useful-blocks-ja.mo' );
+			load_plugin_textdomain( 'useful-blocks', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+		}, 0);
 
-			// 設定ページ
-			if ( is_admin() ) {
-				require_once USFL_BLKS_PATH . 'inc/admin_menu.php';
-			}
+		// データセット
+		add_action( 'init', [ __CLASS__, 'set_variables' ], 1 );
+		add_action( 'init', [ __CLASS__, 'set_settings' ], 10 );
+
+		// ファイル読み込み
+		require_once USFL_BLKS_PATH . 'inc/register_blocks.php';
+		require_once USFL_BLKS_PATH . 'inc/enqueue.php';
+		require_once USFL_BLKS_PATH . 'inc/ajax.php';
+		require_once USFL_BLKS_PATH . 'inc/hooks.php';
+
+		// 設定ページ
+		if ( is_admin() ) {
+			require_once USFL_BLKS_PATH . 'inc/admin_menu.php';
+		}
 	}
 }
 
@@ -73,8 +82,5 @@ class Ponhiro_Blocks extends \Ponhiro_Blocks\Data {
  * プラグイン Init
  */
 add_action( 'plugins_loaded', function() {
-	// 翻訳ファイルの読み込み
-	load_plugin_textdomain( 'useful-blocks', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-
 	new Ponhiro_Blocks();
 });

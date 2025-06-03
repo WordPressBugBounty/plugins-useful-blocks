@@ -297,9 +297,13 @@ registerBlockType(name, {
 				)}
 
 				<div className={`${blockName}__wrap`}>
-					<div className={`${blockName}__basis -left`}>{leftLabel}</div>
+					<div className={`${blockName}__basis -left`}>
+						<RichText.Content value={leftLabel} />
+					</div>
 					<div className={`${blockName}__axis`}>{scales}</div>
-					<div className={`${blockName}__basis -right`}>{rightLabel}</div>
+					<div className={`${blockName}__basis -right`}>
+						<RichText.Content value={rightLabel} />
+					</div>
 				</div>
 			</div>
 		);

@@ -1,0 +1,24 @@
+{
+  "apiVersion": 2,
+  "name": "ponhiro-blocks/list-item",
+  "title": "Useful List Item",
+  "category": "useful-blocks",
+  "supports": {
+    "className": false,
+    "customClassName": false
+  },
+  "keywords": [
+    "useful",
+    "list"
+  ],
+  "parent": [
+    "ponhiro-blocks/list"
+  ],
+  "attributes": {
+    "content": {
+      "type": "string",
+      "source": "html",
+      "selector": "li"
+    }
+  }
+}

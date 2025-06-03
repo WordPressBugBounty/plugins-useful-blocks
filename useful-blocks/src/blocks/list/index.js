@@ -2,8 +2,20 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { registerBlockType } from '@wordpress/blocks';
-import { BlockControls, InspectorControls, RichText } from '@wordpress/block-editor';
+import { createBlock, registerBlockType } from '@wordpress/blocks';
+import {
+	BlockControls,
+	InspectorControls,
+	RichText,
+	useBlockProps,
+	__experimentalUseInnerBlocksProps,
+	useInnerBlocksProps,
+} from '@wordpress/block-editor';
+
+const compatibleUseInnerBlocksProps =
+	typeof useInnerBlocksProps === 'function'
+		? useInnerBlocksProps
+		: __experimentalUseInnerBlocksProps;
 
 /**
  * Internal dependencies
@@ -22,7 +34,7 @@ import classnames from 'classnames';
  * metadata
  */
 import metadata from './block.json';
-const { name, category, keywords, parent, supports } = metadata;
+const { name, apiVersion, category, keywords, parent, supports } = metadata;
 
 /**
  * Block
@@ -42,6 +54,7 @@ const isListEmpty = (listItems) => {
 };
 
 registerBlockType(name, {
+	apiVersion,
 	title: __('Useful List', textDomain),
 	icon: {
 		foreground: pbIcon.color,
@@ -54,17 +67,25 @@ registerBlockType(name, {
 	attributes: metadata.attributes,
 	edit: (props) => {
 		const { className, attributes, setAttributes } = props;
-		const { listTag, icon, listItems, showBorder } = attributes;
+		const { listTag, icon, showBorder } = attributes;
+		const TagName = listTag;
 		let blockClass = classnames(blockName, className);
 
 		blockClass = classnames(blockClass, '-icon-' + icon);
 
-		if (isListEmpty(listItems)) {
-			blockClass = classnames(blockClass, 'is-null');
-		}
 		if (showBorder) {
 			blockClass = classnames(blockClass, '-border-on');
 		}
+
+		const blockProps = useBlockProps({
+			className: blockClass,
+		});
+
+		const innerBlocksProps = compatibleUseInnerBlocksProps(blockProps, {
+			allowedBlocks: ['ponhiro-blocks/list-item'],
+			template: [['ponhiro-blocks/list-item']],
+			templateLock: false,
+		});
 
 		return (
 			<>
@@ -74,32 +95,80 @@ registerBlockType(name, {
 				<InspectorControls>
 					<MySidebar {...{ attributes, setAttributes }} />
 				</InspectorControls>
-				<RichText
-					tagName={listTag}
-					className={blockClass}
-					multiline='li'
-					placeholder={__('Text…', textDomain)}
-					value={listItems}
-					onChange={(value) => setAttributes({ listItems: value })}
-				/>
+				<TagName className={blockClass} {...innerBlocksProps} />
 			</>
 		);
 	},
 
 	save: ({ attributes }) => {
-		const { listTag, listItems, icon, showBorder } = attributes;
-
-		// 空の時は何も出力しない
-		if (isListEmpty(listItems)) {
-			return null;
-		}
+		const { listTag, icon, showBorder } = attributes;
+		const TagName = listTag;
 
 		let blockClass = classnames(blockName, '-icon-' + icon);
 
 		if (showBorder) {
 			blockClass = classnames(blockClass, '-border-on');
 		}
+		const blockProps = useBlockProps.save({
+			className: blockClass,
+		});
+		const innerBlocksProps = useInnerBlocksProps.save(blockProps);
 
-		return <RichText.Content tagName={listTag} className={blockClass} value={listItems} />;
+		return <TagName {...innerBlocksProps}></TagName>;
 	},
+	deprecated: [
+		{
+			attributes: {
+				listTag: {
+					type: 'string',
+					default: 'ul',
+				},
+				icon: {
+					type: 'string',
+					default: 'dot',
+				},
+				listItems: {
+					type: 'array',
+					source: 'children',
+					selector: '.pb-list',
+				},
+				showBorder: {
+					type: 'boolean',
+					default: false,
+				},
+			},
+			supports,
+			save: ({ attributes }) => {
+				const { listTag, listItems, icon, showBorder } = attributes;
+
+				// 空の時は何も出力しない
+				if (isListEmpty(listItems)) {
+					return null;
+				}
+
+				let blockClass = classnames(blockName, '-icon-' + icon);
+
+				if (showBorder) {
+					blockClass = classnames(blockClass, '-border-on');
+				}
+
+				return (
+					<RichText.Content tagName={listTag} className={blockClass} value={listItems} />
+				);
+			},
+			migrate: (attributes) => {
+				const { listTag, listItems, icon, showBorder } = attributes;
+				if (!!listItems.length === 0) {
+					return { listTag, icon, showBorder };
+				}
+
+				const innerBlocks = listItems.map((item) => {
+					return createBlock('ponhiro-blocks/list-item', {
+						content: item.props.children,
+					});
+				});
+				return [{ listTag, icon, showBorder }, innerBlocks];
+			},
+		},
+	],
 });

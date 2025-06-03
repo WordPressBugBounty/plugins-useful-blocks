@@ -42,13 +42,13 @@ registerBlockType('ponhiro-blocks/compare-box', {
 		// 	default: 'ul',
 		// },
 		headLeft: {
-			type: 'array',
-			source: 'children',
+			type: 'string',
+			source: 'html',
 			selector: '.pb-compare-box__head__l',
 		},
 		headRight: {
-			type: 'array',
-			source: 'children',
+			type: 'string',
+			source: 'html',
 			selector: '.pb-compare-box__head__r',
 		},
 		colSet: {
@@ -106,8 +106,12 @@ registerBlockType('ponhiro-blocks/compare-box', {
 			<div className={blockClass} data-colset={colSet}>
 				{/* ヘッダー部分 */}
 				<div className={`${blockName}__head`}>
-					<div className={`${blockName}__head__l`}>{headLeft}</div>
-					<div className={`${blockName}__head__r`}>{headRight}</div>
+					<div className={`${blockName}__head__l`}>
+						<RichText.Content value={headLeft} />
+					</div>
+					<div className={`${blockName}__head__r`}>
+						<RichText.Content value={headRight} />
+					</div>
 				</div>
 				{/* <div className={ `${ blockName }__body` }> */}
 				<InnerBlocks.Content />

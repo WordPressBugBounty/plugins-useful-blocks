@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Useful Blocks\n"
-"POT-Creation-Date: 2023-03-28 22:36+0900\n"
-"PO-Revision-Date: 2023-03-28 22:39+0900\n"
+"POT-Creation-Date: 2023-03-29 07:12+0000\n"
+"PO-Revision-Date: 2023-03-29 07:12+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ja_JP\n"
@@ -157,7 +157,7 @@ msgstr "グラフ"
 
 #: src/blocks/bar-graph-item/index.js:65 src/blocks/bar-graph-item/index.js:74
 #: src/blocks/bar-graph/index.js:57 src/blocks/cv-box-note/index.js:66
-#: src/blocks/list/index.js:81
+#: src/blocks/list-item/index.js:52
 msgid "Text…"
 msgstr "テキスト…"
 
@@ -442,6 +442,10 @@ msgstr "CV 画像"
 msgid "Edit image"
 msgstr ""
 
+#: src/blocks/list-item/index.js:23
+msgid "Useful List Item"
+msgstr "Usefulリスト項目"
+
 #: src/blocks/list/_sidebar.js:77
 msgid "List settings"
 msgstr "リスト設定"
@@ -458,7 +462,7 @@ msgstr ""
 msgid "Convert to ordered list"
 msgstr ""
 
-#: src/blocks/list/index.js:45
+#: src/blocks/list/index.js:58
 msgid "Useful List"
 msgstr "Usefulリスト"
 
@@ -641,7 +645,7 @@ msgid "Icon image for \"Icon box\" block"
 msgstr "「アイコンボックス」ブロック用のアイコン画像"
 
 #. Plugin Name of the plugin/theme
-#: inc/admin_menu.php:15 inc/admin_menu.php:16 inc/register_blocks.php:67
+#: inc/admin_menu.php:15 inc/admin_menu.php:16 inc/register_blocks.php:68
 msgid "Useful Blocks"
 msgstr "Useful Blocks"
 
