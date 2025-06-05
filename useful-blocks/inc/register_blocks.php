@@ -83,15 +83,23 @@ add_filter( $hookname, function( $categories ) {
 } );
 
 /**
- * リストブロックで空のulタグを出力しない
+ * リストブロックで空のulタグを出力しない.かつ、「innerHTML」にコンテンツが含まれる古いリストブロックが空として扱われないように注意。
  */
 add_filter( 'render_block_ponhiro-blocks/list', function ( $block_content, $block ) {
-	$is_empty = true;
-	foreach ( $block['innerBlocks'] as $inner_block ) {
-		if ( ! empty( $inner_block['innerHTML'] ) ) {
-			$is_empty = false;
-			break;
+	$has_content = false;
+
+	// 新しい保存形式では、li要素が innerBlocks 配列に格納されている
+	if ( ! empty( $block['innerBlocks'] ) ) {
+		foreach ( $block['innerBlocks'] as $inner_block ) {
+			if ( ! empty( $inner_block['innerHTML'] ) ) {
+				$has_content = true;
+				break;
+			}
 		}
+	// 古い保存形式では、innerBlocks が存在せず、HTML文字列がそのまま innerHTML に入る
+	} elseif ( ! empty( $block['innerHTML'] ) ) {
+		$has_content = '' !== trim( wp_strip_all_tags( $block['innerHTML'] ) );
 	}
-	return $is_empty ? null : $block_content;
+
+	return $has_content ? $block_content : null;
 }, 10, 2 );
