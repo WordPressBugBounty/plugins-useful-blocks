@@ -1,18 +1,16 @@
 {
-    "apiVersion": 2,
-    "name": "ponhiro-blocks/rating-graph",
-    "title": "Rating Graph",
-    "category": "useful-blocks",
-    "keywords": [
-        "useful"
-    ],
-    "supports": {
-        "className": false
-    },
-    "attributes": {
-        "colSet": {
-            "type": "string",
-            "default": "1"
-        }
-    }
+	"apiVersion": 2,
+	"name": "ponhiro-blocks/rating-graph",
+	"title": "Rating Graph",
+	"category": "useful-blocks",
+	"keywords": ["useful", "ub"],
+	"supports": {
+		"className": false
+	},
+	"attributes": {
+		"colSet": {
+			"type": "string",
+			"default": "1"
+		}
+	}
 }

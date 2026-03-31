@@ -3,7 +3,8 @@
   "title": "CV Box",
   "category": "useful-blocks",
   "keywords": [
-    "useful"
+    "useful",
+    "ub"
   ],
   "supports": {
     "className": false

@@ -23,7 +23,9 @@ export default ({ icon, label, size = '1em', className = '', returnItagIf404 = t
 
 	if (iconPrefix) {
 		const theIcons = ALL_ICONS[iconPrefix] || {};
-		if (!theIcons[icon]) return null;
+		if (!theIcons[icon]) {
+			return null;
+		}
 
 		const TheIconComponent = theIcons[icon];
 
@@ -40,7 +42,7 @@ export default ({ icon, label, size = '1em', className = '', returnItagIf404 = t
 				className={className || null}
 				height={size}
 				width={size}
-				xmlns='http://www.w3.org/2000/svg'
+				xmlns="http://www.w3.org/2000/svg"
 				{...ariaProps}
 			/>
 		);

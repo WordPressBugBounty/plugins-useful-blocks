@@ -9,9 +9,8 @@ import {
 	BaseControl,
 	RadioControl,
 	CheckboxControl,
-	TextControl,
 } from '@wordpress/components';
-import { useMemo, createInterpolateElement } from '@wordpress/element';
+import { useMemo } from '@wordpress/element';
 import { MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 
 /**
@@ -19,47 +18,28 @@ import { MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
  */
 import FreePreview from '@blocks/freePreview';
 import LsIconPicker from '@components/LsIconPicker';
-import { textDomain, isPro } from '@blocks/config';
+import { isPro } from '@blocks/config';
 
 /**
  * 設定項目
  */
 const markTypeOptions = [
 	{
-		label: __('Dot', textDomain),
+		label: __('Dot', 'useful-blocks'),
 		value: 'dot',
 	},
 	{
-		label: __('Icon', textDomain),
+		label: __('Icon', 'useful-blocks'),
 		value: 'icon',
 	},
 	{
-		label: __('Image', textDomain),
+		label: __('Image', 'useful-blocks'),
 		value: 'image',
 	},
 ];
 
 export default ({ attributes, setAttributes }) => {
 	const { activePoint, maxStep, markType, iconClass, mediaId, mediaUrl } = attributes;
-
-	const activePoints = activePoint.split(',');
-
-	/* eslint jsx-a11y/anchor-has-content: 0 */
-	const faNote = createInterpolateElement(
-		__(
-			'You can specify the class name of the "solid" type <a>Font Awesome icon</a>.',
-			textDomain
-		),
-		{
-			a: (
-				<a
-					href='https://fontawesome.com/icons?d=gallery'
-					target='_blank'
-					rel='noopener noreferrer'
-				/>
-			),
-		}
-	);
 
 	const setImage = (media) => {
 		setAttributes({
@@ -75,18 +55,18 @@ export default ({ attributes, setAttributes }) => {
 		});
 	};
 
-	// console.log('activePoints', activePoints);
 	const pointControls = useMemo(() => {
 		const mapNums = maxStep === 5 ? [1, 2, 3, 4, 5] : [1, 2, 3];
+		const points = activePoint.split(',');
 
 		return mapNums.map((num) => {
 			const numStr = String(num);
 			return (
 				<CheckboxControl
 					key={`checkbox_key_${num}`}
-					checked={activePoints.includes(numStr)}
+					checked={points.includes(numStr)}
 					onChange={(checked) => {
-						let newActivePoints = activePoints;
+						let newActivePoints = [...points];
 						if (checked) {
 							newActivePoints.push(numStr);
 						} else {
@@ -99,32 +79,35 @@ export default ({ attributes, setAttributes }) => {
 				/>
 			);
 		});
-	}, [maxStep, activePoint, activePoints]);
+	}, [maxStep, activePoint, setAttributes]);
 
 	return (
 		<>
-			<PanelBody title={__('Graph setting', textDomain)} initialOpen={true}>
-				<div className='pb-rating-pointControls'>
-					<div className='components-base-control__label'>
-						{__('Position of active point', textDomain)}
+			<PanelBody title={__('Graph setting', 'useful-blocks')} initialOpen={true}>
+				<div className="pb-rating-pointControls">
+					<div className="components-base-control__label">
+						{__('Position of active point', 'useful-blocks')}
 					</div>
-					<div className='__checks'>{pointControls}</div>
+					<div className="__checks">{pointControls}</div>
 				</div>
 				<FreePreview
-					description={__('you can set the number of steps in the graph.', textDomain)}
+					description={__(
+						'you can set the number of steps in the graph.',
+						'useful-blocks',
+					)}
 				>
 					<BaseControl>
 						<BaseControl.VisualLabel>
-							{__('Number of steps in the graph', textDomain)}
+							{__('Number of steps in the graph', 'useful-blocks')}
 						</BaseControl.VisualLabel>
-						<ButtonGroup className='pb-btn-group'>
+						<ButtonGroup className="pb-btn-group">
 							<Button
 								isPrimary={3 === maxStep}
 								onClick={() => {
 									setAttributes({ maxStep: 3 });
 								}}
 							>
-								{__('3 stages', textDomain)}
+								{__('3 stages', 'useful-blocks')}
 							</Button>
 							<Button
 								isPrimary={5 === maxStep}
@@ -132,18 +115,20 @@ export default ({ attributes, setAttributes }) => {
 									setAttributes({ maxStep: 5 });
 								}}
 							>
-								{__('5 stages', textDomain)}
+								{__('5 stages', 'useful-blocks')}
 							</Button>
 						</ButtonGroup>
 					</BaseControl>
 				</FreePreview>
-				<FreePreview description={__('you can use icons and images.', textDomain)}>
+				<FreePreview description={__('you can use icons and images.', 'useful-blocks')}>
 					<RadioControl
-						label={__('Active point shape', textDomain)}
+						label={__('Active point shape', 'useful-blocks')}
 						selected={markType}
 						options={markTypeOptions}
 						onChange={(val) => {
-							if (!isPro) return;
+							if (!isPro) {
+								return;
+							}
 							setAttributes({ markType: val });
 						}}
 					/>
@@ -151,7 +136,7 @@ export default ({ attributes, setAttributes }) => {
 						<>
 							<BaseControl>
 								<BaseControl.VisualLabel>
-									{__('Select Icon', textDomain)}
+									{__('Select Icon', 'useful-blocks')}
 								</BaseControl.VisualLabel>
 								<LsIconPicker
 									value={iconClass}
@@ -162,9 +147,8 @@ export default ({ attributes, setAttributes }) => {
 								/>
 							</BaseControl>
 							{/* <TextControl
-								label={__('Icon class', textDomain)}
+								label={__('Icon class', 'useful-blocks')}
 								value={iconClass}
-								help={faNote}
 								onChange={(val) => {
 									setAttributes({ iconClass: val });
 								}}
@@ -172,11 +156,11 @@ export default ({ attributes, setAttributes }) => {
 						</>
 					)}
 					{'image' === markType && (
-						<div className='pb-media-setting -rating-graph'>
-							<div className='pb-media-setting__preview'>
-								{mediaUrl && <img src={mediaUrl} alt='' />}
+						<div className="pb-media-setting -rating-graph">
+							<div className="pb-media-setting__preview">
+								{mediaUrl && <img src={mediaUrl} alt="" />}
 							</div>
-							<div className='pb-media-setting__btns'>
+							<div className="pb-media-setting__btns">
 								<MediaUploadCheck>
 									<MediaUpload
 										onSelect={(media) => {
@@ -192,8 +176,8 @@ export default ({ attributes, setAttributes }) => {
 										render={({ open }) => (
 											<Button isPrimary onClick={open}>
 												{mediaUrl
-													? __('Change media', textDomain)
-													: __('Select media', textDomain)}
+													? __('Change media', 'useful-blocks')
+													: __('Select media', 'useful-blocks')}
 											</Button>
 										)}
 									/>
@@ -201,12 +185,12 @@ export default ({ attributes, setAttributes }) => {
 								{mediaUrl && (
 									<Button
 										isSecondary
-										className='__delete'
+										className="__delete"
 										onClick={() => {
 											removeImage();
 										}}
 									>
-										{__('Delete', textDomain)}
+										{__('Delete', 'useful-blocks')}
 									</Button>
 								)}
 							</div>

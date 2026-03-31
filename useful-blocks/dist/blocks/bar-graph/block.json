@@ -3,7 +3,8 @@
   "title": "Bar Graph",
   "category": "useful-blocks",
   "keywords": [
-    "useful"
+    "useful",
+    "ub"
   ],
   "supports": {
     "className": false

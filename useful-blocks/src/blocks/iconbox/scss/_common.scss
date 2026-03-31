@@ -2,6 +2,117 @@
 	max-width: 600px;
 	margin: 2em auto;
 	padding: 0;
+
+	// ポジション（左右アイコン）
+	&[data-icon="right"] {
+
+		.pb-iconbox__innerIcon {
+			margin-left: 24px;
+
+			@include sp {
+				margin-left: 12px;
+			}
+		}
+	}
+
+	&[data-icon="left"] {
+
+		.pb-iconbox__body {
+			flex-direction: row-reverse;
+		}
+
+		.pb-iconbox__innerIcon {
+			margin-right: 24px;
+
+			@include sp {
+				margin-right: 12px;
+			}
+		}
+	}
+
+	// カラーセット
+	&[data-colset="y"] {
+
+		.pb-iconbox__head {
+			background-color: var(--pb_colset_yellow);
+		}
+
+		.pb-iconbox__body {
+			background-color: var(--pb_colset_yellow_thin);
+		}
+
+		.pb-list li::before {
+			color: var(--pb_colset_yellow);
+			background-color: var(--pb_colset_yellow);
+		}
+
+	}
+
+	&[data-colset="p"] {
+
+		.pb-iconbox__head {
+			background-color: var(--pb_colset_pink);
+		}
+
+		.pb-iconbox__body {
+			background-color: var(--pb_colset_pink_thin);
+		}
+
+		.pb-list li::before {
+			color: var(--pb_colset_pink);
+			background-color: var(--pb_colset_pink);
+		}
+	}
+
+	&[data-colset="g"] {
+
+		.pb-iconbox__head {
+			background-color: var(--pb_colset_green);
+		}
+
+		.pb-iconbox__body {
+			background-color: var(--pb_colset_green_thin);
+		}
+
+		.pb-list li::before {
+			color: var(--pb_colset_green);
+			background-color: var(--pb_colset_green);
+		}
+	}
+
+	// ブルー
+	&[data-colset="b"] {
+
+		.pb-iconbox__head {
+			background-color: var(--pb_colset_blue);
+		}
+
+		.pb-iconbox__body {
+			background-color: var(--pb_colset_blue_thin);
+		}
+
+		.pb-list li::before {
+			color: var(--pb_colset_blue);
+			background-color: var(--pb_colset_blue);
+		}
+	}
+
+	// カスタムカラー
+	&[data-colset="1"] {
+
+		.pb-iconbox__head {
+			background-color: var(--pb_colset_iconbox_01);
+		}
+
+		.pb-iconbox__body {
+			background-color: var(--pb_colset_iconbox_01_bg);
+		}
+
+		.pb-list li::before {
+			color: var(--pb_colset_iconbox_01_icon);
+			background-color: var(--pb_colset_iconbox_01_icon);
+		}
+	}
 }
 
 .pb-iconbox__inner {
@@ -45,17 +156,17 @@
 	width: 70%;
 	font-size: 16px;
 
-	& > p {
+	> p {
 		margin-top: 1em;
 		margin-bottom: 1em;
 	}
 
-	& > :first-child {
+	> :first-child {
 		margin-top: 0 !important;
 		padding-top: 0 !important;
 	}
 
-	& > :last-child {
+	> :last-child {
 		margin-bottom: 0 !important;
 		padding-bottom: 0 !important;
 	}
@@ -192,7 +303,7 @@
 		&::after {
 			position: absolute;
 			height: 1px;
-			background: currentColor;
+			background: currentcolor;
 			opacity: 0.8;
 			content: "";
 		}
@@ -340,127 +451,4 @@
 		// margin: 0 8px;
 	}
 
-}
-
-
-/*
- * ポジション
- */
-.pb-iconbox {
-
-	&[data-icon="right"] {
-
-		.pb-iconbox__innerIcon {
-			margin-left: 24px;
-
-			@include sp {
-				margin-left: 12px;
-			}
-		}
-	}
-
-	&[data-icon="left"] {
-
-		.pb-iconbox__body {
-			flex-direction: row-reverse;
-		}
-
-		.pb-iconbox__innerIcon {
-			margin-right: 24px;
-
-			@include sp {
-				margin-right: 12px;
-			}
-		}
-	}
-
-}
-
-/*
- * カラー
- */
-.pb-iconbox {
-
-	&[data-colset="y"] {
-
-		.pb-iconbox__head {
-			background-color: var(--pb_colset_yellow);
-		}
-
-		.pb-iconbox__body {
-			background-color: var(--pb_colset_yellow_thin);
-		}
-
-		.pb-list li::before {
-			color: var(--pb_colset_yellow);
-			background-color: var(--pb_colset_yellow);
-		}
-
-	}
-
-	&[data-colset="p"] {
-
-		.pb-iconbox__head {
-			background-color: var(--pb_colset_pink);
-		}
-
-		.pb-iconbox__body {
-			background-color: var(--pb_colset_pink_thin);
-		}
-
-		.pb-list li::before {
-			color: var(--pb_colset_pink);
-			background-color: var(--pb_colset_pink);
-		}
-	}
-
-	&[data-colset="g"] {
-
-		.pb-iconbox__head {
-			background-color: var(--pb_colset_green);
-		}
-
-		.pb-iconbox__body {
-			background-color: var(--pb_colset_green_thin);
-		}
-
-		.pb-list li::before {
-			color: var(--pb_colset_green);
-			background-color: var(--pb_colset_green);
-		}
-	}
-
-	// ブルー
-	&[data-colset="b"] {
-
-		.pb-iconbox__head {
-			background-color: var(--pb_colset_blue);
-		}
-
-		.pb-iconbox__body {
-			background-color: var(--pb_colset_blue_thin);
-		}
-
-		.pb-list li::before {
-			color: var(--pb_colset_blue);
-			background-color: var(--pb_colset_blue);
-		}
-	}
-
-	// カスタムカラー
-	&[data-colset="1"] {
-
-		.pb-iconbox__head {
-			background-color: var(--pb_colset_iconbox_01);
-		}
-
-		.pb-iconbox__body {
-			background-color: var(--pb_colset_iconbox_01_bg);
-		}
-
-		.pb-list li::before {
-			color: var(--pb_colset_iconbox_01_icon);
-			background-color: var(--pb_colset_iconbox_01_icon);
-		}
-	}
 }

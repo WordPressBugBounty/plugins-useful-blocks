@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { textDomain, isPro } from '@blocks/config';
+import { isPro } from '@blocks/config';
 
 /**
  * Custom Component
@@ -8,16 +8,16 @@ export default function ({ description, children }) {
 	return (
 		<>
 			{!isPro ? (
-				<div className='pb-free-noticeBox'>
+				<div className="pb-free-noticeBox">
 					<a
-						href='https://ponhiro.com/useful-blocks/#download-link'
-						target='_blank'
-						rel='noreferrer noopener'
+						href="https://ponhiro.com/useful-blocks/#download-link"
+						target="_blank"
+						rel="noreferrer noopener"
 					>
-						{__('In the Pro version,', textDomain)}
+						{__('In the Pro version,', 'useful-blocks')}
 					</a>
 					{description || ''}
-					<div className='pb-free-ctrlPreview'>{children}</div>
+					<div className="pb-free-ctrlPreview">{children}</div>
 				</div>
 			) : (
 				children

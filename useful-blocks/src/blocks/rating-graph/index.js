@@ -23,7 +23,7 @@ const compatibleUseInnerBlocksProps =
  */
 import icon from './_icon';
 import MySidebar from './_sidebar';
-import { textDomain, iconColor } from '@blocks/config';
+import { iconColor } from '@blocks/config';
 
 /**
  * External dependencies
@@ -43,7 +43,7 @@ const blockName = 'pb-rating-graph';
 
 registerBlockType(name, {
 	apiVersion,
-	title: __('Rating Graph', textDomain),
+	title: __('Rating Graph', 'useful-blocks'),
 	icon: {
 		foreground: iconColor,
 		src: icon,
@@ -52,7 +52,7 @@ registerBlockType(name, {
 	category,
 	supports,
 	attributes: metadata.attributes,
-	edit: (props) => {
+	edit: function Edit(props) {
 		const { attributes, setAttributes } = props;
 		const { colSet } = attributes;
 

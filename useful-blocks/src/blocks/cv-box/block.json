@@ -1,21 +1,19 @@
 {
-    "name": "ponhiro-blocks/cv-box",
-    "title": "CV Box",
-    "category": "useful-blocks",
-    "keywords": [
-        "useful"
-    ],
-    "supports": {
-        "className": false
-    },
-    "attributes": {
-        "colSet": {
-            "type": "string",
-            "default": "1"
-        },
-        "bgStyle": {
-            "type": "string",
-            "default": "on"
-        }
-    }
+	"name": "ponhiro-blocks/cv-box",
+	"title": "CV Box",
+	"category": "useful-blocks",
+	"keywords": ["useful", "ub"],
+	"supports": {
+		"className": false
+	},
+	"attributes": {
+		"colSet": {
+			"type": "string",
+			"default": "1"
+		},
+		"bgStyle": {
+			"type": "string",
+			"default": "on"
+		}
+	}
 }

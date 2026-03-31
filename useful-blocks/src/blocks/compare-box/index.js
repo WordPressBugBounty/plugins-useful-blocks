@@ -15,7 +15,7 @@ import classnames from 'classnames';
  */
 import MyControls from './_controls';
 import pbIcon from '@blocks/icon';
-import { textDomain, blockCategory } from '@blocks/config';
+import { blockCategory } from '@blocks/config';
 
 /**
  * Block
@@ -23,12 +23,12 @@ import { textDomain, blockCategory } from '@blocks/config';
 const blockName = 'pb-compare-box';
 
 registerBlockType('ponhiro-blocks/compare-box', {
-	title: __('Comparison box', textDomain),
+	title: __('Comparison box', 'useful-blocks'),
 	icon: {
 		foreground: pbIcon.color,
 		src: pbIcon.compareBox,
 	},
-	keywords: ['useful'],
+	keywords: ['useful', 'ub'],
 	category: blockCategory,
 	supports: { className: false },
 
@@ -72,16 +72,16 @@ registerBlockType('ponhiro-blocks/compare-box', {
 					{/* ヘッダー部分 */}
 					<div className={`${blockName}__head`}>
 						<RichText
-							tagName='div'
+							tagName="div"
 							className={`${blockName}__head__l`}
-							placeholder={__('…', textDomain)}
+							placeholder={__('…', 'useful-blocks')}
 							value={headLeft}
 							onChange={(value) => setAttributes({ headLeft: value })}
 						/>
 						<RichText
-							tagName='div'
+							tagName="div"
 							className={`${blockName}__head__r`}
-							placeholder={__('…', textDomain)}
+							placeholder={__('…', 'useful-blocks')}
 							value={headRight}
 							onChange={(value) => setAttributes({ headRight: value })}
 						/>
@@ -125,9 +125,9 @@ registerBlockType('ponhiro-blocks/compare-box', {
  * Block : pb-compare-box-body
  */
 registerBlockType('ponhiro-blocks/compare-box-body', {
-	title: __('Comparison area', textDomain),
+	title: __('Comparison area', 'useful-blocks'),
 	icon: 'admin-site',
-	keywords: ['ponhiro', 'compare-box'],
+	keywords: ['ponhiro', 'compare-box', 'ub'],
 	category: blockCategory,
 	supports: {
 		className: false,
@@ -169,9 +169,9 @@ registerBlockType('ponhiro-blocks/compare-box-body', {
  * Block
  */
 registerBlockType('ponhiro-blocks/compare-box-body-content', {
-	title: __('Comparison content', textDomain),
+	title: __('Comparison content', 'useful-blocks'),
 	icon: 'admin-site',
-	// keywords: [ 'ponhiro', 'compare-box-body' ],
+	keywords: ['ub'],
 	category: blockCategory,
 	supports: {
 		className: false,

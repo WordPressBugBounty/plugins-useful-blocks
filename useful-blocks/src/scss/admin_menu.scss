@@ -3,12 +3,13 @@
 /*
  * 設定画面で読み込むCSS
  */
-@import "mixin/**/*.scss";
+@import "mixin/**/*";
 
 // アイコン
 @import "inc/icomoon";
 
-// ブロックのスタイル
+// ブロックのスタイル（glob は実ファイル名 _common.scss に合わせる必要がある）
+// stylelint-disable-next-line scss/load-partial-extension, scss/load-no-partial-leading-underscore
 @import "../blocks/**/_common.scss";
 
 

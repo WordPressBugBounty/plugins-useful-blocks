@@ -11,7 +11,6 @@ import { TextControl, ToggleControl, TextareaControl } from '@wordpress/componen
  * External dependencies
  */
 // import classnames from 'classnames';
-import { textDomain } from '@blocks/config';
 
 /**
  * Custom Component
@@ -27,7 +26,7 @@ export default memo((props) => {
 		<>
 			<TextControl
 				label={__('URL')}
-				type='url'
+				type="url"
 				value={url}
 				onChange={(val) => {
 					setAttributes({ url: val });
@@ -85,10 +84,10 @@ export default memo((props) => {
 				}}
 			/>
 			<TextareaControl
-				label={__('Img tag for measurement', textDomain)}
+				label={__('Img tag for measurement', 'useful-blocks')}
 				// help=''
 				value={imgTag}
-				rows='4'
+				rows="4"
 				onChange={(html) => {
 					setAttributes({ imgTag: html });
 				}}

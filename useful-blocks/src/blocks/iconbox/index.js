@@ -21,10 +21,7 @@ import { image as imgIcon } from '@wordpress/icons';
  */
 import classnames from 'classnames';
 import pbIcon from '@blocks/icon';
-import {
-	textDomain,
-	// isPro
-} from '@blocks/config';
+// import { isPro } from '@blocks/config';
 
 /**
  * Internal dependencies
@@ -50,7 +47,7 @@ const blockName = 'pb-iconbox';
 
 registerBlockType(name, {
 	// apiVersion: 2,
-	title: __('Icon box', textDomain),
+	title: __('Icon box', 'useful-blocks'),
 	icon: {
 		foreground: pbIcon.color,
 		src: pbIcon.iconbox,
@@ -107,11 +104,11 @@ registerBlockType(name, {
 		const iconboxFigure = (
 			<div className={isTopIcon ? `${blockName}__topIcon` : `${blockName}__innerIcon`}>
 				<RichText
-					tagName='div'
+					tagName="div"
 					className={classnames(`${blockName}__comment -${commentStyle}`, {
 						'pb-is-empty': !comment,
 					})}
-					placeholder={__('…', textDomain)}
+					placeholder={__('…', 'useful-blocks')}
 					value={comment}
 					onChange={(value) => setAttributes({ comment: value })}
 				/>
@@ -120,7 +117,7 @@ registerBlockType(name, {
 						icon={<BlockIcon icon={imgIcon} />}
 						onSelect={onSelectImage}
 						notices={noticeUI}
-						accept='image/*'
+						accept="image/*"
 						allowedTypes={['image']}
 					/>
 				) : (
@@ -135,13 +132,13 @@ registerBlockType(name, {
 								allowedTypes={'image'}
 								value={mediaId}
 								render={({ open }) => (
-									<Button onClick={open} className='__changeImage'>
+									<Button onClick={open} className="__changeImage">
 										画像を変更
 									</Button>
 								)}
 							/>
 						</MediaUploadCheck>
-						{mediaUrl && <img className={`${blockName}__img`} src={mediaUrl} alt='' />}
+						{mediaUrl && <img className={`${blockName}__img`} src={mediaUrl} alt="" />}
 						{/* <Button
 							onClick={removeImage}
 							isTertiary
@@ -171,11 +168,11 @@ registerBlockType(name, {
 					{isTopIcon && iconboxFigure}
 					<div className={`${blockName}__inner`}>
 						<RichText
-							tagName='div'
+							tagName="div"
 							className={classnames(`${blockName}__head`, {
 								'pb-is-empty': !headTitle,
 							})}
-							placeholder={__('…', textDomain)}
+							placeholder={__('…', 'useful-blocks')}
 							value={headTitle}
 							onChange={(value) => setAttributes({ headTitle: value })}
 						/>
@@ -228,7 +225,7 @@ registerBlockType(name, {
 					style={isTopIcon && 0 !== iconY ? { top: `${iconY}px` } : null}
 				>
 					{!!mediaUrl && (
-						<img className={`${blockName}__icon -no-lb`} src={mediaUrl} alt='' />
+						<img className={`${blockName}__icon -no-lb`} src={mediaUrl} alt="" />
 					)}
 				</figure>
 			</div>

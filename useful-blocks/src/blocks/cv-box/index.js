@@ -9,7 +9,7 @@ import { InspectorControls, InnerBlocks } from '@wordpress/block-editor';
  * Internal dependencies
  */
 import pbIcon from '@blocks/icon';
-import { textDomain, isPro } from '@blocks/config';
+import { isPro } from '@blocks/config';
 import MySidebar from './_sidebar';
 
 /**
@@ -29,7 +29,7 @@ const { name, category, keywords, supports } = metadata;
 const blockName = 'pb-cv-box';
 
 registerBlockType(name, {
-	title: __('CV Box', textDomain),
+	title: __('CV Box', 'useful-blocks'),
 	icon: {
 		foreground: pbIcon.color,
 		src: pbIcon.cvBox,

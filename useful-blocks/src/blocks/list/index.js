@@ -23,7 +23,6 @@ const compatibleUseInnerBlocksProps =
 import pbIcon from '@blocks/icon';
 import MyToolbar from './_toolbar';
 import MySidebar from './_sidebar';
-import { textDomain } from '@blocks/config';
 
 /**
  * External dependencies
@@ -55,7 +54,7 @@ const isListEmpty = (listItems) => {
 
 registerBlockType(name, {
 	apiVersion,
-	title: __('Useful List', textDomain),
+	title: __('Useful List', 'useful-blocks'),
 	icon: {
 		foreground: pbIcon.color,
 		src: pbIcon.list,
@@ -65,7 +64,7 @@ registerBlockType(name, {
 	supports,
 	parent,
 	attributes: metadata.attributes,
-	edit: (props) => {
+	edit: function Edit(props) {
 		const { className, attributes, setAttributes } = props;
 		const { listTag, icon, showBorder } = attributes;
 		const TagName = listTag;

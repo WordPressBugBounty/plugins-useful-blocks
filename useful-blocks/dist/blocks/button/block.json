@@ -3,7 +3,8 @@
   "title": "CV Botton",
   "category": "useful-blocks",
   "keywords": [
-    "button"
+    "button",
+    "ub"
   ],
   "supports": {
     "reusable": false,

@@ -5,12 +5,14 @@
  */
 
 // mixin
-@import "mixin/**/*.scss";
+@import "mixin/**/*";
 
 // 共通
 @import "inc/icomoon";
+// stylelint-disable-next-line scss/load-partial-extension, scss/load-no-partial-leading-underscore
 @import "../blocks/**/_common.scss";
-@import "editor/_*.scss";
+@import "editor/*";
+// stylelint-disable-next-line scss/load-partial-extension, scss/load-no-partial-leading-underscore
 @import "../blocks/**/_editor.scss";
 
 // 無料版でのみ表示するテキスト
@@ -24,7 +26,7 @@
 	cursor: not-allowed;
 	opacity: 0.5;
 
-	& > * {
+	> * {
 		pointer-events: none;
 	}
 
@@ -65,8 +67,9 @@
 .wp-block {
 
 	[class*=" pb-icon-"],
-	[class^=pb-icon-] {
+	[class^="pb-icon-"] {
 		font-weight: 400 !important;
-		font-family: pbicon !important;
+		// カスタムアイコンフォント＋フォールバック（lint: font-family-no-missing-generic-family-keyword）
+		font-family: pbicon, sans-serif !important;
 	}
 }

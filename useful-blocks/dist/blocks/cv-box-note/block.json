@@ -2,6 +2,9 @@
   "name": "ponhiro-blocks/cv-box-note",
   "title": "CV Text",
   "category": "useful-blocks",
+  "keywords": [
+    "ub"
+  ],
   "supports": {
     "reusable": false,
     "className": false

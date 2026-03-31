@@ -16,7 +16,6 @@ import { Button, ButtonGroup, TextControl, TabPanel, Modal } from '@wordpress/co
 /**
  * @Inner dependencies
  */
-import { textDomain } from '@blocks/config';
 import LsIcon from '@components/LsIcon';
 import {
 	ICON_STYLE_LIST,
@@ -33,22 +32,24 @@ const ICON_NAMESPACE = '__PONHIRO_ICONS__';
  * TEXT
  */
 const TEXTS = {
-	select: __('Select icon', textDomain),
-	search: __('Search icon', textDomain),
-	nofound: __('Icon not found.', textDomain),
+	select: __('Select icon', 'useful-blocks'),
+	search: __('Search icon', 'useful-blocks'),
+	nofound: __('Icon not found.', 'useful-blocks'),
 };
 
 const IconBtns = ({ icons, value, onChange, isFilterd }) => {
 	// icons: ['__catA__', icon1, icon2, ..., '__catB__', icon1, icon2, ...],
 
 	return (
-		<ButtonGroup className='__iconList' data-filterd={isFilterd ? '1' : '0'}>
+		<ButtonGroup className="__iconList" data-filterd={isFilterd ? '1' : '0'}>
 			{icons.map((iconName, idx) => {
 				if (iconName.startsWith('--')) {
-					if (isFilterd) return null;
+					if (isFilterd) {
+						return null;
+					}
 					const catName = ICON_CATEGORIES[iconName] ?? iconName;
 					return (
-						<span key={idx} className='__iconCategory'>
+						<span key={idx} className="__iconCategory">
 							{catName}
 						</span>
 					);
@@ -61,7 +62,7 @@ const IconBtns = ({ icons, value, onChange, isFilterd }) => {
 							onChange(iconName);
 						}}
 					>
-						<LsIcon icon={iconName} size='20px' />
+						<LsIcon icon={iconName} size="20px" />
 					</Button>
 				);
 			})}
@@ -113,8 +114,8 @@ const IconPickerTab = ({ value = '', onChange, searchValue }) => {
 
 	return (
 		<TabPanel
-			className='ls-iconModal__tab'
-			activeClass='is-active'
+			className="ls-iconModal__tab"
+			activeClass="is-active"
 			onSelect={(tabName) => {
 				setCurrentTabName(tabName);
 
@@ -140,7 +141,7 @@ const IconPickerTab = ({ value = '', onChange, searchValue }) => {
 										isFilterd={true}
 									/>
 								) : (
-									<div className='__noIcon'>{TEXTS.nofound}</div>
+									<div className="__noIcon">{TEXTS.nofound}</div>
 								);
 							}
 							// if (value.startsWith('ls')) {
@@ -177,15 +178,15 @@ export default function ({
 				setSearchValue('');
 			}}
 		>
-			<div className='ls-iconModal__inner'>
-				<div className='ls-iconModal__top'>
+			<div className="ls-iconModal__inner">
+				<div className="ls-iconModal__top">
 					<TextControl
 						placeholder={TEXTS.search}
-						className='ls-iconModal__s'
+						className="ls-iconModal__s"
 						value={searchValue}
 						// autoFocus={false}
-						autoComplete='false'
-						name='icon-search'
+						autoComplete="false"
+						name="icon-search"
 						onChange={(newSearchValue) => {
 							setSearchValue(newSearchValue);
 						}}
@@ -195,14 +196,16 @@ export default function ({
 				<IconPickerTab
 					onChange={(val) => {
 						onChange(val);
-						if (!continueable) onClose();
+						if (!continueable) {
+							onClose();
+						}
 					}}
 					{...{
 						value,
 						searchValue,
 					}}
 				/>
-				<div className='ls-iconModal__bottom'>{renderBottom && renderBottom()}</div>
+				<div className="ls-iconModal__bottom">{renderBottom && renderBottom()}</div>
 			</div>
 		</Modal>
 	);

@@ -9,7 +9,6 @@ import { PanelBody, BaseControl, ButtonGroup, ToggleControl } from '@wordpress/c
 /**
  * Internal dependencies
  */
-import { textDomain } from '@blocks/config';
 import FreePreview from '@blocks/freePreview';
 
 /**
@@ -27,17 +26,23 @@ export default function ({ attributes, setAttributes, clientId }) {
 
 	const blockData = useSelect(
 		(select) => select('core/block-editor').getBlocksByClientId(clientId)[0],
-		[clientId]
+		[clientId],
 	);
 
 	const limitSettings = (
-		<PanelBody title={__('Removal of content restrictions', textDomain)} initialOpen={true}>
+		<PanelBody
+			title={__('Removal of content restrictions', 'useful-blocks')}
+			initialOpen={true}
+		>
 			<BaseControl>
 				<FreePreview
-					description={__('you can place free contents other than the list.', textDomain)}
+					description={__(
+						'you can place free contents other than the list.',
+						'useful-blocks',
+					)}
 				>
 					<ToggleControl
-						label={__('Allow blocks to be placed freely.', textDomain)}
+						label={__('Allow blocks to be placed freely.', 'useful-blocks')}
 						checked={!isLimited}
 						onChange={(value) => {
 							const limitedVal = !value;
@@ -66,9 +71,9 @@ export default function ({ attributes, setAttributes, clientId }) {
 
 	return (
 		<>
-			<PanelBody title={__('Color set', textDomain)} initialOpen={true}>
+			<PanelBody title={__('Color set', 'useful-blocks')} initialOpen={true}>
 				<BaseControl>
-					<ButtonGroup className='pb-panel--colorSet'>
+					<ButtonGroup className="pb-panel--colorSet">
 						{colorSets.map((setNum) => {
 							let isSelected = false;
 							if (colSet === setNum) {
@@ -76,11 +81,11 @@ export default function ({ attributes, setAttributes, clientId }) {
 							}
 							const buttonId = 'pb-compare-colset-' + setNum;
 							return (
-								<div className='__btnBox' key={`key_style_${setNum}`}>
+								<div className="__btnBox" key={`key_style_${setNum}`}>
 									<button
-										type='button'
+										type="button"
 										id={buttonId}
-										className='__btn'
+										className="__btn"
 										onClick={() => {
 											setAttributes({
 												colSet: setNum,
@@ -89,17 +94,17 @@ export default function ({ attributes, setAttributes, clientId }) {
 									></button>
 									<label
 										htmlFor={buttonId}
-										className='__label'
+										className="__label"
 										data-selected={isSelected || null}
 									>
-										<span className='pb-compare-box' data-colset={setNum}>
-											<span className='pb-compare-box__head'>
-												<span className='pb-compare-box__head__l'></span>
-												<span className='pb-compare-box__head__r'></span>
+										<span className="pb-compare-box" data-colset={setNum}>
+											<span className="pb-compare-box__head">
+												<span className="pb-compare-box__head__l"></span>
+												<span className="pb-compare-box__head__r"></span>
 											</span>
-											<span className='pb-compare-box__body'>
-												<span className='pb-compare-box__body__l'></span>
-												<span className='pb-compare-box__body__r'></span>
+											<span className="pb-compare-box__body">
+												<span className="pb-compare-box__body__l"></span>
+												<span className="pb-compare-box__body__r"></span>
 											</span>
 										</span>
 										{/* <span className='__leftCol'></span>

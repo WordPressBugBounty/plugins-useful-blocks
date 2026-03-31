@@ -17,7 +17,8 @@
 	font-weight: normal;
 
 	/* use !important to prevent issues with browser extensions that change fonts */
-	font-family: pbicon !important;
+	// pbicon 未定義時のフォールバック（lint 汎用ファミリ）
+	font-family: pbicon, sans-serif !important;
 	font-style: normal;
 	font-variant: normal;
 	line-height: 1;

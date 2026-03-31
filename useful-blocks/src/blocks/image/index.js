@@ -19,7 +19,7 @@ import { useCallback } from '@wordpress/element';
  */
 import classnames from 'classnames';
 import pbIcon from '@blocks/icon';
-import { textDomain, isPro } from '@blocks/config';
+import { isPro } from '@blocks/config';
 
 /**
  * Internal dependencies
@@ -35,7 +35,7 @@ const blockName = 'pb-image';
 const { name, category, parent, keywords, supports } = metadata;
 
 registerBlockType(name, {
-	title: __('CV Image', textDomain),
+	title: __('CV Image', 'useful-blocks'),
 	icon: {
 		foreground: pbIcon.color,
 		src: pbIcon.cvBox,
@@ -45,7 +45,7 @@ registerBlockType(name, {
 	supports,
 	parent,
 	attributes: metadata.attributes,
-	edit: (props) => {
+	edit: function Edit(props) {
 		const { attributes, setAttributes, className, noticeUI } = props;
 		const { url, alt, id, href, dataSize } = attributes;
 		const blockClass = classnames(blockName, className, '-ponhiro-blocks');
@@ -60,21 +60,24 @@ registerBlockType(name, {
 				alt: undefined,
 				id: undefined,
 			});
-		}, []);
+		}, [setAttributes]);
 
-		const onSelectImage = useCallback((media) => {
-			// console.log( media );
-			if (!media || !media.url) {
-				// メディア情報が取得できなかった時
-				deleteImage();
-				return;
-			}
-			setAttributes({
-				url: media.url,
-				alt: media.alt,
-				id: media.id,
-			});
-		}, []);
+		const onSelectImage = useCallback(
+			(media) => {
+				// console.log( media );
+				if (!media || !media.url) {
+					// メディア情報が取得できなかった時
+					deleteImage();
+					return;
+				}
+				setAttributes({
+					url: media.url,
+					alt: media.alt,
+					id: media.id,
+				});
+			},
+			[setAttributes, deleteImage],
+		);
 
 		const onSelectURL = useCallback(
 			(newURL) => {
@@ -85,7 +88,7 @@ registerBlockType(name, {
 					});
 				}
 			},
-			[url]
+			[url, setAttributes],
 		);
 
 		const imgTag = <img className={`${blockName}__img`} src={url} alt={alt || ''} />;
@@ -110,7 +113,7 @@ registerBlockType(name, {
 						onSelectURL={onSelectURL}
 						notices={noticeUI}
 						// onError={ this.onUploadError }
-						accept='image/*'
+						accept="image/*"
 						allowedTypes={['image']}
 						value={{ id, src }}
 						mediaPreview={
@@ -157,6 +160,8 @@ registerBlockType(name, {
 		}
 
 		const imgTag = <img className={`${imgClass}`} src={url} alt={alt || ''} />;
+		const linkTarget = isNewTab ? '_blank' : null;
+		const linkRel = rel || (isNewTab ? 'noreferrer' : null);
 
 		return (
 			<>
@@ -165,8 +170,8 @@ registerBlockType(name, {
 						<a
 							href={href}
 							className={`${blockName}__link`}
-							target={isNewTab ? '_blank' : null}
-							rel={rel || null}
+							target={linkTarget}
+							rel={linkRel}
 						>
 							{imgTag}
 						</a>
@@ -188,6 +193,8 @@ registerBlockType(name, {
 					return null;
 				}
 				const imgTag = <img className={`${blockName}__img`} src={url} alt={alt || ''} />;
+				const linkTarget = isNewTab ? '_blank' : null;
+				const linkRel = rel || (isNewTab ? 'noreferrer' : null);
 
 				return (
 					<>
@@ -196,8 +203,8 @@ registerBlockType(name, {
 								<a
 									href={href}
 									className={`${blockName}__link`}
-									target={isNewTab ? '_blank' : null}
-									rel={rel || null}
+									target={linkTarget}
+									rel={linkRel}
 								>
 									{imgTag}
 								</a>

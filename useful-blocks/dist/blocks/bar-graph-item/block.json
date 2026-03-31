@@ -2,6 +2,9 @@
   "name": "ponhiro-blocks/bar-graph-item",
   "title": "Graph",
   "category": "useful-blocks",
+  "keywords": [
+    "ub"
+  ],
   "supports": {
     "className": false
   },

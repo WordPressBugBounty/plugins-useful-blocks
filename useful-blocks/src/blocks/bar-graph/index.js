@@ -11,7 +11,7 @@ import { InspectorControls, RichText, InnerBlocks } from '@wordpress/block-edito
  */
 import icon from './_icon';
 import MyControls from './_controls';
-import { textDomain, iconColor } from '@blocks/config';
+import { iconColor } from '@blocks/config';
 
 /**
  * External dependencies
@@ -30,7 +30,7 @@ const { name, keywords, supports, category } = metadata;
 const blockName = 'pb-bar-graph';
 
 registerBlockType(name, {
-	title: __('Bar Graph', textDomain),
+	title: __('Bar Graph', 'useful-blocks'),
 	icon: {
 		foreground: iconColor,
 		src: icon,
@@ -52,9 +52,9 @@ registerBlockType(name, {
 				<div className={blockClass} data-colset={colSet} data-bg={bg ? '1' : null}>
 					{!hideTtl && (
 						<RichText
-							tagName='div'
+							tagName="div"
 							className={`${blockName}__title -${ttlData}`}
-							placeholder={__('Text…', textDomain)}
+							placeholder={__('Text…', 'useful-blocks')}
 							value={title}
 							onChange={(value) => setAttributes({ title: value })}
 						/>
@@ -88,7 +88,7 @@ registerBlockType(name, {
 			<div className={blockName} data-colset={colSet} data-bg={bg ? '1' : null}>
 				{!hideTtl && (
 					<RichText.Content
-						tagName='div'
+						tagName="div"
 						className={`${blockName}__title -${ttlData}`}
 						data-ttl={ttlData}
 						value={title}

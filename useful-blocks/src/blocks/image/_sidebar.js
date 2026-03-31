@@ -8,7 +8,6 @@ import { PanelBody, BaseControl, Button, ButtonGroup, TextControl } from '@wordp
  * External dependencies
  */
 // import classnames from 'classnames';
-import { textDomain } from '@blocks/config';
 
 /**
  * Settings
@@ -41,9 +40,9 @@ export default ({ attributes, setAttributes }) => {
 	return (
 		<>
 			{url && (
-				<PanelBody title={__('Image settings', textDomain)} initialOpen={true}>
+				<PanelBody title={__('Image settings', 'useful-blocks')} initialOpen={true}>
 					<TextControl
-						label='alt'
+						label="alt"
 						value={alt}
 						onChange={(val) => {
 							setAttributes({ alt: val });
@@ -51,7 +50,7 @@ export default ({ attributes, setAttributes }) => {
 					/>
 					<BaseControl>
 						<BaseControl.VisualLabel>
-							{__('Image Size', textDomain)}
+							{__('Image Size', 'useful-blocks')}
 						</BaseControl.VisualLabel>
 						<ButtonGroup>
 							{sizeButtons.map((btn) => {

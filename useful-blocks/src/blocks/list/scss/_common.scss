@@ -54,7 +54,7 @@ ul.pb-list {
 			width: 0 !important;
 			height: 0 !important;
 			font-weight: 600 !important;
-			font-family: pbicon !important;
+			font-family: pbicon, sans-serif !important;
 			background-color: none !important;
 			transform: scale(1) !important;
 		}
@@ -101,7 +101,7 @@ ol.pb-list {
 			color: #fff !important;
 			font-weight: 700 !important;
 			font-size: 1em !important;
-			font-family: Arial !important;
+			font-family: Arial, sans-serif !important;
 			line-height: 2 !important;
 			text-align: center;
 			transform: scale(0.75) !important;

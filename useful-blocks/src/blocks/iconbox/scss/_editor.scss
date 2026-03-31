@@ -1,13 +1,11 @@
 /**
  * エディター側だけに読み込ませるスタイル
  */
-
 // .block-editor-writing-flow {}
-
 
 .pb-iconbox__body {
 
-	& > .block-editor-inner-blocks {
+	> .block-editor-inner-blocks {
 		flex: 1 1 auto;
 		width: 70%;
 	}

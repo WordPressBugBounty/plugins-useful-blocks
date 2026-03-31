@@ -1,16 +1,12 @@
 {
-    "name": "ponhiro-blocks/button",
-    "title": "CV Botton",
-    "category": "useful-blocks",
-    "keywords": [
-        "button"
-    ],
-    "supports": {
-        "reusable": false,
-        "className": false
-    },
-    "parent": [
-        "ponhiro-blocks/cv-box"
-    ],
-    "attributes": {}
+	"name": "ponhiro-blocks/button",
+	"title": "CV Botton",
+	"category": "useful-blocks",
+	"keywords": ["button", "ub"],
+	"supports": {
+		"reusable": false,
+		"className": false
+	},
+	"parent": ["ponhiro-blocks/cv-box"],
+	"attributes": {}
 }

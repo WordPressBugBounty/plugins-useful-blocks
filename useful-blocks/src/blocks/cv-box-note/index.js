@@ -10,7 +10,6 @@ import { InspectorControls, RichText } from '@wordpress/block-editor';
  */
 import pbIcon from '@blocks/icon';
 import MySidebar from './_sidebar';
-import { textDomain } from '@blocks/config';
 
 /**
  * External dependencies
@@ -29,7 +28,7 @@ const { name, category, parent, supports } = metadata;
 const blockName = 'pb-cv-box__note';
 
 registerBlockType(name, {
-	title: __('CV Text', textDomain),
+	title: __('CV Text', 'useful-blocks'),
 	icon: {
 		foreground: pbIcon.color,
 		src: pbIcon.cvBox,
@@ -56,14 +55,14 @@ registerBlockType(name, {
 				</InspectorControls>
 				<div className={blockClass} data-style={dataStyle}>
 					{icon && (
-						<div className='__icon'>
+						<div className="__icon">
 							<i className={icon}></i>
 						</div>
 					)}
 					<RichText
-						tagName='div'
-						className='__text'
-						placeholder={__('Text…', textDomain)}
+						tagName="div"
+						className="__text"
+						placeholder={__('Text…', 'useful-blocks')}
 						value={content}
 						onChange={(value) => setAttributes({ content: value })}
 					/>
@@ -80,11 +79,11 @@ registerBlockType(name, {
 		return (
 			<div className={blockName} data-style={dataStyle}>
 				{icon && (
-					<div className='__icon'>
+					<div className="__icon">
 						<i className={icon}></i>
 					</div>
 				)}
-				<RichText.Content tagName='div' className='__text' value={content} />
+				<RichText.Content tagName="div" className="__text" value={content} />
 			</div>
 		);
 	},

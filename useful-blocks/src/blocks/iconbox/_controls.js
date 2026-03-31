@@ -18,7 +18,7 @@ import { InspectorControls } from '@wordpress/block-editor';
  * External dependencies
  */
 // import classnames from 'classnames';
-import { textDomain, isPro } from '@blocks/config';
+import { isPro } from '@blocks/config';
 
 import FreePreview from '@blocks/freePreview';
 
@@ -38,10 +38,10 @@ export default function ({ attributes, setAttributes }) {
 	const iconSets = ['01', '02', '03', '04'];
 
 	const iconPositions = [
-		{ val: 'left', label: __('Left', textDomain) },
-		{ val: 'right', label: __('Right', textDomain) },
-		{ val: 'top-left', label: __('Top left', textDomain) },
-		{ val: 'top-right', label: __('Top right', textDomain) },
+		{ val: 'left', label: __('Left', 'useful-blocks') },
+		{ val: 'right', label: __('Right', 'useful-blocks') },
+		{ val: 'top-left', label: __('Top left', 'useful-blocks') },
+		{ val: 'top-right', label: __('Top right', 'useful-blocks') },
 	];
 
 	const isTopIcon = -1 !== iconPos.indexOf('top');
@@ -49,18 +49,18 @@ export default function ({ attributes, setAttributes }) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={__('Color set', textDomain)} initialOpen={true}>
+				<PanelBody title={__('Color set', 'useful-blocks')} initialOpen={true}>
 					<BaseControl>
-						<ButtonGroup className='pb-panel--colorSet -iconbox'>
+						<ButtonGroup className="pb-panel--colorSet -iconbox">
 							{colorSets.map((setNum) => {
 								const isSelected = colSet === setNum;
 								const buttonId = 'pb-iconbox-colset-' + setNum;
 								return (
-									<div className='__btnBox' key={`key_style_${setNum}`}>
+									<div className="__btnBox" key={`key_style_${setNum}`}>
 										<button
-											type='button'
+											type="button"
 											id={buttonId}
-											className='__btn'
+											className="__btn"
 											onClick={() => {
 												setAttributes({
 													colSet: setNum,
@@ -69,13 +69,14 @@ export default function ({ attributes, setAttributes }) {
 										></button>
 										<label
 											htmlFor={buttonId}
-											className='__label'
+											className="__label"
+											aria-label={`Color set ${setNum}`}
 											data-selected={isSelected || null}
 										>
-											<span className='pb-iconbox' data-colset={setNum}>
-												<span className='pb-iconbox__inner'>
-													<span className='pb-iconbox__head'></span>
-													<span className='pb-iconbox__body'></span>
+											<span className="pb-iconbox" data-colset={setNum}>
+												<span className="pb-iconbox__inner">
+													<span className="pb-iconbox__head"></span>
+													<span className="pb-iconbox__body"></span>
 												</span>
 											</span>
 										</label>
@@ -85,26 +86,28 @@ export default function ({ attributes, setAttributes }) {
 						</ButtonGroup>
 					</BaseControl>
 				</PanelBody>
-				<PanelBody title={__('Icon set', textDomain)} initialOpen={true}>
+				<PanelBody title={__('Icon set', 'useful-blocks')} initialOpen={true}>
 					<BaseControl>
 						<FreePreview
 							description={__(
 								'you can register 4 types of icons and call them easily.',
-								textDomain
+								'useful-blocks',
 							)}
 						>
-							<ButtonGroup className='pb-panel--colorSet -iconset'>
+							<ButtonGroup className="pb-panel--colorSet -iconset">
 								{iconSets.map((setNum) => {
 									const isSelected = iconSet === setNum;
 									const buttonId = 'pb-iconbox-iconset-' + setNum;
 									return (
-										<div className='__btnBox' key={`key_style_${setNum}`}>
+										<div className="__btnBox" key={`key_style_${setNum}`}>
 											<button
-												type='button'
+												type="button"
 												id={buttonId}
-												className='__btn'
+												className="__btn"
 												onClick={() => {
-													if (!isPro) return;
+													if (!isPro) {
+														return;
+													}
 													setAttributes({
 														iconSet: setNum,
 														mediaUrl: undefined,
@@ -114,12 +117,12 @@ export default function ({ attributes, setAttributes }) {
 											></button>
 											<label
 												htmlFor={buttonId}
-												className='__label'
+												className="__label"
 												data-selected={isSelected || null}
 											>
-												<span className='__num'>{setNum}</span>
+												<span className="__num">{setNum}</span>
 												<span
-													className='pb-iconbox__figure'
+													className="pb-iconbox__figure"
 													data-iconset={setNum}
 												></span>
 											</label>
@@ -130,14 +133,14 @@ export default function ({ attributes, setAttributes }) {
 							<Button
 								// isSmall
 								isSecondary
-								className='pb-btn--clear'
+								className="pb-btn--clear"
 								onClick={() => {
 									setAttributes({
 										iconSet: '',
 									});
 								}}
 							>
-								{__('Clear', textDomain)}
+								{__('Clear', 'useful-blocks')}
 							</Button>
 							{/* <div className='pb-ctrl-description'>
 						admin.php?page=useful_blocks#icons から設定できます。
@@ -145,12 +148,15 @@ export default function ({ attributes, setAttributes }) {
 						</FreePreview>
 					</BaseControl>
 				</PanelBody>
-				<PanelBody title={__('Icon position', textDomain)} initialOpen={true}>
+				<PanelBody title={__('Icon position', 'useful-blocks')} initialOpen={true}>
 					<FreePreview
-						description={__('you can change the placement of the icons.', textDomain)}
+						description={__(
+							'you can change the placement of the icons.',
+							'useful-blocks',
+						)}
 					>
 						<BaseControl>
-							<ButtonGroup className='pb-panel--colorSet -iconbox'>
+							<ButtonGroup className="pb-panel--colorSet -iconbox">
 								{iconPositions.map((data) => {
 									const isSelected = data.val === iconPos ? true : false;
 									return (
@@ -159,7 +165,9 @@ export default function ({ attributes, setAttributes }) {
 											isPrimary={isSelected}
 											key={`pb-iconpos-${data.val}`}
 											onClick={() => {
-												if (!isPro) return;
+												if (!isPro) {
+													return;
+												}
 												setAttributes({
 													iconPos: data.val,
 												});
@@ -174,7 +182,7 @@ export default function ({ attributes, setAttributes }) {
 						{isTopIcon ? (
 							<BaseControl>
 								<RangeControl
-									label={__('Move icon down', textDomain)}
+									label={__('Move icon down', 'useful-blocks')}
 									value={iconY}
 									onChange={(val) => {
 										setAttributes({ iconY: val });
@@ -185,8 +193,8 @@ export default function ({ attributes, setAttributes }) {
 							</BaseControl>
 						) : (
 							<ToggleControl
-								className='pb-mt-20'
-								label={__('Align to top/bottom center', textDomain)}
+								className="pb-mt-20"
+								label={__('Align to top/bottom center', 'useful-blocks')}
 								checked={isCenter}
 								onChange={(value) => {
 									setAttributes({ isCenter: value });
@@ -195,21 +203,21 @@ export default function ({ attributes, setAttributes }) {
 						)}
 					</FreePreview>
 				</PanelBody>
-				<PanelBody title={__('Baloon style', textDomain)} initialOpen={true}>
+				<PanelBody title={__('Baloon style', 'useful-blocks')} initialOpen={true}>
 					<BaseControl>
 						<FreePreview
-							description={__('you can change the balloon style.', textDomain)}
+							description={__('you can change the balloon style.', 'useful-blocks')}
 						>
-							<ButtonGroup className='pb-panel--colorSet -balloon'>
+							<ButtonGroup className="pb-panel--colorSet -balloon">
 								{balloonStyles.map((style) => {
 									const isSelected = commentStyle === style;
 									const buttonId = 'pb-iconbox-colset-' + style;
 									return (
-										<div className='__btnBox' key={`key_style_${style}`}>
+										<div className="__btnBox" key={`key_style_${style}`}>
 											<button
-												type='button'
+												type="button"
 												id={buttonId}
-												className='__btn'
+												className="__btn"
 												onClick={() => {
 													setAttributes({
 														commentStyle: style,
@@ -218,11 +226,12 @@ export default function ({ attributes, setAttributes }) {
 											></button>
 											<label
 												htmlFor={buttonId}
-												className='__label'
+												className="__label"
+												aria-label={style}
 												data-selected={isSelected || null}
 											>
 												<span
-													className='pb-iconbox__innerIcon'
+													className="pb-iconbox__innerIcon"
 													data-colset={style}
 												>
 													<span

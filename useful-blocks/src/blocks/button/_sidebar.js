@@ -15,7 +15,7 @@ import {
 /**
  * Internal dependencies
  */
-import { textDomain, isPro } from '@blocks/config';
+import { isPro } from '@blocks/config';
 import FreePreview from '@blocks/freePreview';
 import LinkControls from './components/LinkControls';
 
@@ -56,7 +56,7 @@ export default ({ attributes, setAttributes, siblingsImageId }) => {
 	// const { updateBlockAttributes } = useDispatch('core/block-editor');
 
 	const emIconButtons = (
-		<ButtonGroup className='pb-btn-group'>
+		<ButtonGroup className="pb-btn-group">
 			{emIcons.map((icon) => {
 				const iconName = icon.val;
 				const isSelected = iconName === emIcon;
@@ -66,7 +66,9 @@ export default ({ attributes, setAttributes, siblingsImageId }) => {
 						isPrimary={isSelected}
 						key={`pb-em-icon-${iconName}`}
 						onClick={() => {
-							if (!isPro) return;
+							if (!isPro) {
+								return;
+							}
 							setAttributes({
 								emIcon: iconName,
 							});
@@ -80,7 +82,7 @@ export default ({ attributes, setAttributes, siblingsImageId }) => {
 	);
 
 	const arrowIconButtons = (
-		<ButtonGroup className='pb-btn-group'>
+		<ButtonGroup className="pb-btn-group">
 			{arrowIcons.map((icon) => {
 				const iconName = icon.val;
 				const isSelected = iconName === arrowIcon;
@@ -90,7 +92,9 @@ export default ({ attributes, setAttributes, siblingsImageId }) => {
 						isPrimary={isSelected}
 						key={`pb-arrow-icon-${iconName}`}
 						onClick={() => {
-							if (!isPro) return;
+							if (!isPro) {
+								return;
+							}
 							setAttributes({
 								arrowIcon: iconName,
 							});
@@ -105,22 +109,22 @@ export default ({ attributes, setAttributes, siblingsImageId }) => {
 
 	return (
 		<>
-			<PanelBody title={__('Link settings', textDomain)} initialOpen={true}>
+			<PanelBody title={__('Link settings', 'useful-blocks')} initialOpen={true}>
 				<LinkControls {...{ attributes, setAttributes, siblingsImageId }} />
 			</PanelBody>
-			<PanelBody title={__('Button settings', textDomain)} initialOpen={true}>
-				<BaseControl className='pb-cvbtn-left-controls'>
+			<PanelBody title={__('Button settings', 'useful-blocks')} initialOpen={true}>
+				<BaseControl className="pb-cvbtn-left-controls">
 					<BaseControl.VisualLabel>
-						{__('Left side of button', textDomain)}
+						{__('Left side of button', 'useful-blocks')}
 					</BaseControl.VisualLabel>
-					<ButtonGroup className='pb-btn-group'>
+					<ButtonGroup className="pb-btn-group">
 						<Button
 							variant={emIcon ? 'secondary' : 'primary'}
 							onClick={() => {
 								setAttributes({ emIcon: '' });
 							}}
 						>
-							{__('Text', textDomain)}
+							{__('Text', 'useful-blocks')}
 						</Button>
 						<Button
 							variant={!emIcon ? 'secondary' : 'primary'}
@@ -130,10 +134,10 @@ export default ({ attributes, setAttributes, siblingsImageId }) => {
 								});
 							}}
 						>
-							{__('Icon', textDomain)}
+							{__('Icon', 'useful-blocks')}
 						</Button>
 					</ButtonGroup>
-					<div className='__controls'>
+					<div className="__controls">
 						{!emIcon ? (
 							<TextControl
 								value={btnEm}
@@ -146,7 +150,7 @@ export default ({ attributes, setAttributes, siblingsImageId }) => {
 								<FreePreview
 									description={__(
 										'you can choose from several types of icons.',
-										textDomain
+										'useful-blocks',
 									)}
 								>
 									{emIconButtons}
@@ -157,16 +161,19 @@ export default ({ attributes, setAttributes, siblingsImageId }) => {
 				</BaseControl>
 				<BaseControl>
 					<BaseControl.VisualLabel>
-						{__('Icon displayed on the right edge of the button', textDomain)}
+						{__('Icon displayed on the right edge of the button', 'useful-blocks')}
 					</BaseControl.VisualLabel>
 					<FreePreview
-						description={__('you can choose from several types of icons.', textDomain)}
+						description={__(
+							'you can choose from several types of icons.',
+							'useful-blocks',
+						)}
 					>
 						{arrowIconButtons}
 					</FreePreview>
 				</BaseControl>
 				<ToggleControl
-					label={__('Round button', textDomain)}
+					label={__('Round button', 'useful-blocks')}
 					checked={isRound}
 					onChange={(value) => {
 						setAttributes({
@@ -175,7 +182,7 @@ export default ({ attributes, setAttributes, siblingsImageId }) => {
 					}}
 				/>
 				<ToggleControl
-					label={__('Display text link below button', textDomain)}
+					label={__('Display text link below button', 'useful-blocks')}
 					checked={isShowLink}
 					onChange={(value) => {
 						setAttributes({
@@ -183,7 +190,7 @@ export default ({ attributes, setAttributes, siblingsImageId }) => {
 						});
 						if (value) {
 							setAttributes({
-								linkLabel: __('Link to : ', textDomain),
+								linkLabel: __('Link to :', 'useful-blocks'),
 							});
 							setAttributes({
 								linkUrl: url,
@@ -193,21 +200,21 @@ export default ({ attributes, setAttributes, siblingsImageId }) => {
 				/>
 			</PanelBody>
 			<PanelBody
-				title={__('Text link settings', textDomain)}
+				title={__('Text link settings', 'useful-blocks')}
 				initialOpen={true}
 				className={!isShowLink ? 'pb-is-hide' : null}
 			>
 				<TextControl
-					label={__('Text before URL', textDomain)}
-					className='pb-is-harf-size'
+					label={__('Text before URL', 'useful-blocks')}
+					className="pb-is-harf-size"
 					value={linkLabel}
 					onChange={(val) => {
 						setAttributes({ linkLabel: val });
 					}}
 				/>
 				<TextControl
-					label={__('URL text to display', textDomain)}
-					type='url'
+					label={__('URL text to display', 'useful-blocks')}
+					type="url"
 					value={linkUrl || url}
 					onChange={(val) => {
 						setAttributes({ linkUrl: val });

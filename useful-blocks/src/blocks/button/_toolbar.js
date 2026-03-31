@@ -26,7 +26,7 @@ export default ({ attributes, setAttributes, siblingsImageId }) => {
 		<>
 			<ToolbarGroup>
 				<ToolbarButton
-					name='link'
+					name="link"
 					icon={<Icon icon={link} />}
 					title={__('Link')}
 					onClick={() => {
@@ -37,8 +37,8 @@ export default ({ attributes, setAttributes, siblingsImageId }) => {
 
 			{/* リンク設定用のポップオーバー */}
 			{isURLPickerOpen && (
-				<Popover position='bottom center' onClose={() => setIsURLPickerOpen(false)}>
-					<div className='block-editor-link-control pb-link-popover'>
+				<Popover position="bottom center" onClose={() => setIsURLPickerOpen(false)}>
+					<div className="block-editor-link-control pb-link-popover">
 						<LinkControls {...{ attributes, setAttributes, siblingsImageId }} />
 					</div>
 				</Popover>

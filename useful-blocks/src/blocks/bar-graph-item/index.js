@@ -11,7 +11,7 @@ import { InspectorControls, RichText } from '@wordpress/block-editor';
  */
 import icon from './_icon';
 import MyControls from './_controls';
-import { textDomain, iconColor } from '@blocks/config';
+import { iconColor } from '@blocks/config';
 
 /**
  * External dependencies
@@ -30,7 +30,7 @@ const { name, parent, supports, category } = metadata;
 const blockName = 'pb-bar-graph';
 
 registerBlockType(name, {
-	title: __('Graph', textDomain),
+	title: __('Graph', 'useful-blocks'),
 	icon: {
 		foreground: iconColor,
 		src: icon,
@@ -56,22 +56,22 @@ registerBlockType(name, {
 					<div className={`${blockName}__dt`} style={{ width: `${ratio}%` }}>
 						<span
 							className={`${blockName}__fill`}
-							role='presentation'
+							role="presentation"
 							style={color ? { backgroundColor: color } : null}
 						></span>
 						<RichText
-							tagName='span'
+							tagName="span"
 							className={`${blockName}__label`}
-							placeholder={__('Text…', textDomain)}
+							placeholder={__('Text…', 'useful-blocks')}
 							value={label}
 							onChange={(val) => setAttributes({ label: val })}
 						/>
 					</div>
 					<div className={`${blockName}__dd`}>
 						<RichText
-							tagName='span'
+							tagName="span"
 							className={`${blockName}__value`}
-							placeholder={__('Text…', textDomain)}
+							placeholder={__('Text…', 'useful-blocks')}
 							value={value}
 							onChange={(val) => setAttributes({ value: val })}
 						/>
@@ -89,17 +89,17 @@ registerBlockType(name, {
 					<span
 						className={`${blockName}__fill`}
 						style={color ? { backgroundColor: color } : null}
-						role='presentation'
+						role="presentation"
 					></span>
 					<RichText.Content
-						tagName='span'
+						tagName="span"
 						className={`${blockName}__label`}
 						value={label}
 					/>
 				</dt>
 				<dd className={`${blockName}__dd`}>
 					<RichText.Content
-						tagName='span'
+						tagName="span"
 						className={`${blockName}__value`}
 						value={value}
 					/>

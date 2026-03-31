@@ -14,7 +14,7 @@ import {
  * Internal dependencies
  */
 import FreePreview from '@blocks/freePreview';
-import { textDomain, isPro } from '@blocks/config';
+import { isPro } from '@blocks/config';
 
 export default function ({ attributes, setAttributes }) {
 	const { color, ratio, isThin } = attributes;
@@ -24,10 +24,10 @@ export default function ({ attributes, setAttributes }) {
 			<PanelBody
 				title={
 					<>
-						{__('Graph Color', textDomain)}
+						{__('Graph Color', 'useful-blocks')}
 						{color && (
 							<span
-								className='component-color-indicator -pb'
+								className="component-color-indicator -pb"
 								style={{ backgroundColor: color }}
 							></span>
 						)}
@@ -39,7 +39,7 @@ export default function ({ attributes, setAttributes }) {
 					<FreePreview
 						description={__(
 							'you can choose the color of the graph as you like.',
-							textDomain
+							'useful-blocks',
 						)}
 					>
 						<ColorPalette
@@ -64,7 +64,9 @@ export default function ({ attributes, setAttributes }) {
 								},
 							]}
 							onChange={(val) => {
-								if (!isPro) return;
+								if (!isPro) {
+									return;
+								}
 								setAttributes({ color: val });
 							}}
 						/>
@@ -72,7 +74,7 @@ export default function ({ attributes, setAttributes }) {
 				</BaseControl>
 				<BaseControl>
 					<ToggleControl
-						label={__('Lighten the color', textDomain)}
+						label={__('Lighten the color', 'useful-blocks')}
 						checked={isThin}
 						onChange={(colorValue) => {
 							setAttributes({ isThin: colorValue });
@@ -80,7 +82,10 @@ export default function ({ attributes, setAttributes }) {
 					/>
 				</BaseControl>
 			</PanelBody>
-			<PanelBody title={__('Percentage of graph', textDomain) + '( % )'} initialOpen={true}>
+			<PanelBody
+				title={__('Percentage of graph', 'useful-blocks') + '( % )'}
+				initialOpen={true}
+			>
 				<RangeControl
 					value={ratio}
 					onChange={(val) => {

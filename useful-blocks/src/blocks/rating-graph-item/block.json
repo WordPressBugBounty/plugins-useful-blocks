@@ -3,12 +3,11 @@
 	"name": "ponhiro-blocks/rating-graph-item",
 	"title": "Graph",
 	"category": "useful-blocks",
+	"keywords": ["ub"],
 	"supports": {
 		"className": false
 	},
-	"parent": [
-		"ponhiro-blocks/rating-graph"
-	],
+	"parent": ["ponhiro-blocks/rating-graph"],
 	"attributes": {
 		"color": {
 			"type": "string",

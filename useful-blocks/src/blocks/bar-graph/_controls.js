@@ -8,26 +8,24 @@ import { PanelBody, ToggleControl, BaseControl, Button, ButtonGroup } from '@wor
  * Internal dependencies
  */
 import FreePreview from '@blocks/freePreview';
-import { textDomain } from '@blocks/config';
-
 /**
  * component
  */
 const ColsetDOM = ({ colset }) => {
 	return (
-		<span className='pb-bar-graph' data-colset={colset} data-bg='1'>
-			<span className='pb-bar-graph__dl' data-bg='1'>
-				<span className='pb-bar-graph__item'>
-					<span className='pb-bar-graph__dt'>
-						<span className='pb-bar-graph__fill'></span>
+		<span className="pb-bar-graph" data-colset={colset} data-bg="1">
+			<span className="pb-bar-graph__dl" data-bg="1">
+				<span className="pb-bar-graph__item">
+					<span className="pb-bar-graph__dt">
+						<span className="pb-bar-graph__fill"></span>
 					</span>
-					<span className='pb-bar-graph__dd'></span>
+					<span className="pb-bar-graph__dd"></span>
 				</span>
-				<span className='pb-bar-graph__item'>
-					<span className='pb-bar-graph__dt'>
-						<span className='pb-bar-graph__fill'></span>
+				<span className="pb-bar-graph__item">
+					<span className="pb-bar-graph__dt">
+						<span className="pb-bar-graph__fill"></span>
 					</span>
-					<span className='pb-bar-graph__dd'></span>
+					<span className="pb-bar-graph__dd"></span>
 				</span>
 			</span>
 		</span>
@@ -42,14 +40,14 @@ const colorSets = ['y', 'p', 'g', 'b', '1'];
 
 // 右テキストの位置
 const valuePosChoices = {
-	left: __('Left justified', textDomain),
-	right: __('Right justified', textDomain),
+	left: __('Left justified', 'useful-blocks'),
+	right: __('Right justified', 'useful-blocks'),
 };
 
 // 左テキストの位置
 const labelPosChoices = {
-	top: __('Top', textDomain),
-	inner: __('Inner', textDomain),
+	top: __('Top', 'useful-blocks'),
+	inner: __('Inner', 'useful-blocks'),
 };
 
 /**
@@ -60,18 +58,18 @@ export default ({ attributes, setAttributes }) => {
 
 	return (
 		<>
-			<PanelBody title={__('Color set', textDomain)} initialOpen={true}>
+			<PanelBody title={__('Color set', 'useful-blocks')} initialOpen={true}>
 				<BaseControl>
-					<ButtonGroup className='pb-panel--colorSet -bar-graph'>
+					<ButtonGroup className="pb-panel--colorSet -bar-graph">
 						{colorSets.map((setNum) => {
 							const isSelected = colSet === setNum;
 							const buttonId = 'pb-iconbox-colset-' + setNum;
 							return (
-								<div className='__btnBox' key={`key_style_${setNum}`}>
+								<div className="__btnBox" key={`key_style_${setNum}`}>
 									<button
-										type='button'
+										type="button"
 										id={buttonId}
-										className='__btn'
+										className="__btn"
 										onClick={() => {
 											setAttributes({
 												colSet: setNum,
@@ -80,7 +78,7 @@ export default ({ attributes, setAttributes }) => {
 									></button>
 									<label
 										htmlFor={buttonId}
-										className='__label'
+										className="__label"
 										data-selected={isSelected || null}
 									>
 										<ColsetDOM colset={setNum} />
@@ -91,9 +89,9 @@ export default ({ attributes, setAttributes }) => {
 					</ButtonGroup>
 				</BaseControl>
 			</PanelBody>
-			<PanelBody title={__('Title settings', textDomain)} initialOpen={true}>
+			<PanelBody title={__('Title settings', 'useful-blocks')} initialOpen={true}>
 				<ToggleControl
-					label={__("Don't show", textDomain)}
+					label={__("Don't show", 'useful-blocks')}
 					checked={hideTtl}
 					onChange={(bool) => {
 						setAttributes({ hideTtl: bool });
@@ -101,7 +99,7 @@ export default ({ attributes, setAttributes }) => {
 				/>
 
 				<ToggleControl
-					label={__('Add a border below', textDomain)}
+					label={__('Add a border below', 'useful-blocks')}
 					checked={'border' === ttlData}
 					onChange={(bool) => {
 						if (bool) {
@@ -112,17 +110,19 @@ export default ({ attributes, setAttributes }) => {
 					}}
 				/>
 			</PanelBody>
-			<PanelBody title={__('Graph settings', textDomain)} initialOpen={true}>
+			<PanelBody title={__('Graph settings', 'useful-blocks')} initialOpen={true}>
 				<ToggleControl
-					label={__('Add background color', textDomain)}
+					label={__('Add background color', 'useful-blocks')}
 					checked={bg}
 					onChange={(value) => {
 						setAttributes({ bg: value });
 					}}
 				/>
-				<FreePreview description={__('you can make more detailed settings.', textDomain)}>
+				<FreePreview
+					description={__('you can make more detailed settings.', 'useful-blocks')}
+				>
 					<ToggleControl
-						label={__('Color the right side of the graph', textDomain)}
+						label={__('Color the right side of the graph', 'useful-blocks')}
 						checked={barBg}
 						onChange={(value) => {
 							setAttributes({ barBg: value });
@@ -130,9 +130,9 @@ export default ({ attributes, setAttributes }) => {
 					/>
 					<BaseControl>
 						<BaseControl.VisualLabel>
-							{__('The position of the label on the left', textDomain)}
+							{__('The position of the label on the left', 'useful-blocks')}
 						</BaseControl.VisualLabel>
-						<ButtonGroup className='pb-btn-group'>
+						<ButtonGroup className="pb-btn-group">
 							{Object.keys(labelPosChoices).map((pos) => {
 								return (
 									<Button
@@ -150,9 +150,9 @@ export default ({ attributes, setAttributes }) => {
 					</BaseControl>
 					<BaseControl>
 						<BaseControl.VisualLabel>
-							{__('The position of the label on the right', textDomain)}
+							{__('The position of the label on the right', 'useful-blocks')}
 						</BaseControl.VisualLabel>
-						<ButtonGroup className='pb-btn-group'>
+						<ButtonGroup className="pb-btn-group">
 							{Object.keys(valuePosChoices).map((pos) => {
 								return (
 									<Button

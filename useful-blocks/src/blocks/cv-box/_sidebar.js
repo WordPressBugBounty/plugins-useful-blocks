@@ -5,11 +5,6 @@ import { __ } from '@wordpress/i18n';
 import { PanelBody, BaseControl, ButtonGroup } from '@wordpress/components';
 
 /**
- * Internal dependencies
- */
-import { textDomain } from '@blocks/config';
-
-/**
  * Settings
  */
 const colorSets = ['1', 'y', 'p', 'g', 'b'];
@@ -23,9 +18,9 @@ export default ({ attributes, setAttributes }) => {
 
 	return (
 		<>
-			<PanelBody title={__('Background style', textDomain)} initialOpen={true}>
+			<PanelBody title={__('Background style', 'useful-blocks')} initialOpen={true}>
 				<BaseControl>
-					<ButtonGroup className='pb-panel--colorSet'>
+					<ButtonGroup className="pb-panel--colorSet">
 						{bgStyles.map((style) => {
 							let isSelected = false;
 							if (bgStyle === style) {
@@ -33,11 +28,11 @@ export default ({ attributes, setAttributes }) => {
 							}
 							const buttonId = 'pb-cvbox-bg-' + style;
 							return (
-								<div className='__btnBox' key={`key_style_${style}`}>
+								<div className="__btnBox" key={`key_style_${style}`}>
 									<button
-										type='button'
+										type="button"
 										id={buttonId}
-										className='__btn'
+										className="__btn"
 										onClick={() => {
 											setAttributes({
 												bgStyle: style,
@@ -46,15 +41,16 @@ export default ({ attributes, setAttributes }) => {
 									></button>
 									<label
 										htmlFor={buttonId}
-										className='__label'
+										className="__label"
+										aria-label={style}
 										data-selected={isSelected || null}
 									>
 										<span
-											className='pb-cv-box'
+											className="pb-cv-box"
 											data-colset={colSet}
 											data-bg={style}
 										>
-											<span className='pb-cv-box__inner'>{style}</span>
+											<span className="pb-cv-box__inner">{style}</span>
 										</span>
 									</label>
 								</div>
@@ -63,9 +59,9 @@ export default ({ attributes, setAttributes }) => {
 					</ButtonGroup>
 				</BaseControl>
 			</PanelBody>
-			<PanelBody title={__('Color set', textDomain)} initialOpen={true}>
+			<PanelBody title={__('Color set', 'useful-blocks')} initialOpen={true}>
 				<BaseControl>
-					<ButtonGroup className='pb-panel--colorSet'>
+					<ButtonGroup className="pb-panel--colorSet">
 						{colorSets.map((setNum) => {
 							let isSelected = false;
 							if (colSet === setNum) {
@@ -73,11 +69,11 @@ export default ({ attributes, setAttributes }) => {
 							}
 							const buttonId = 'pb-cvbox-colset-' + setNum;
 							return (
-								<div className='__btnBox' key={`key_style_${setNum}`}>
+								<div className="__btnBox" key={`key_style_${setNum}`}>
 									<button
-										type='button'
+										type="button"
 										id={buttonId}
-										className='__btn'
+										className="__btn"
 										onClick={() => {
 											setAttributes({
 												colSet: setNum,
@@ -86,26 +82,27 @@ export default ({ attributes, setAttributes }) => {
 									></button>
 									<label
 										htmlFor={buttonId}
-										className='__label'
+										className="__label"
+										aria-label={`Color set ${setNum}`}
 										data-selected={isSelected || null}
 									>
 										<span
-											className='pb-cv-box'
+											className="pb-cv-box"
 											data-colset={setNum}
 											data-bg={bgStyle}
 										>
-											<span className='pb-cv-box__inner'>
-												<span className='pb-list__li pb-icon-check'></span>
-												<span className='pb-list__li pb-icon-check'></span>
-												<span className='pb-button'>
-													<span className='pb-button__btn'>
-														<span className='pb-button__em'></span>
-														<span className='pb-button__text'></span>
+											<span className="pb-cv-box__inner">
+												<span className="pb-list__li pb-icon-check"></span>
+												<span className="pb-list__li pb-icon-check"></span>
+												<span className="pb-button">
+													<span className="pb-button__btn">
+														<span className="pb-button__em"></span>
+														<span className="pb-button__text"></span>
 													</span>
 												</span>
 												<span
-													className='pb-cv-box__note'
-													data-style='border'
+													className="pb-cv-box__note"
+													data-style="border"
 												></span>
 											</span>
 										</span>

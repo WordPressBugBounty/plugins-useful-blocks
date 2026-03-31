@@ -9,7 +9,7 @@ import { PanelBody, BaseControl, Button, ButtonGroup } from '@wordpress/componen
  */
 // import classnames from 'classnames';
 import FreePreview from '@blocks/freePreview';
-import { textDomain, isPro } from '@blocks/config';
+import { isPro } from '@blocks/config';
 
 /**
  * Settings
@@ -41,9 +41,9 @@ export default ({ attributes, setAttributes }) => {
 
 	return (
 		<>
-			<PanelBody title={__('Style settings', textDomain)} initialOpen={true}>
+			<PanelBody title={__('Style settings', 'useful-blocks')} initialOpen={true}>
 				<BaseControl>
-					<ButtonGroup className='pb-panel--colorSet'>
+					<ButtonGroup className="pb-panel--colorSet">
 						{dataStyles.map((style) => {
 							let isSelected = false;
 							if (-1 !== dataStyle.indexOf(style)) {
@@ -51,11 +51,11 @@ export default ({ attributes, setAttributes }) => {
 							}
 							const buttonId = 'pb-cvnote-style-' + style;
 							return (
-								<div className='__btnBox' key={`key_style_${style}`}>
+								<div className="__btnBox" key={`key_style_${style}`}>
 									<button
-										type='button'
+										type="button"
 										id={buttonId}
-										className='__btn'
+										className="__btn"
 										onClick={() => {
 											setAttributes({
 												dataStyle: style,
@@ -64,12 +64,13 @@ export default ({ attributes, setAttributes }) => {
 									></button>
 									<label
 										htmlFor={buttonId}
-										className='__label'
+										className="__label"
+										aria-label={'border' === style ? 'Border' : 'White'}
 										data-selected={isSelected || null}
 									>
-										<div className='pb-cv-box__notewrap'>
+										<div className="pb-cv-box__notewrap">
 											<span
-												className='pb-cv-box__note -preview'
+												className="pb-cv-box__note -preview"
 												data-style={style}
 											>
 												{'border' === style ? 'Border' : 'White'}
@@ -82,12 +83,15 @@ export default ({ attributes, setAttributes }) => {
 					</ButtonGroup>
 				</BaseControl>
 			</PanelBody>
-			<PanelBody title={__('Icon settings', textDomain)} initialOpen={true}>
+			<PanelBody title={__('Icon settings', 'useful-blocks')} initialOpen={true}>
 				<BaseControl>
 					<FreePreview
-						description={__('you can choose from several types of icons.', textDomain)}
+						description={__(
+							'you can choose from several types of icons.',
+							'useful-blocks',
+						)}
 					>
-						<ButtonGroup className='pb-btn-group'>
+						<ButtonGroup className="pb-btn-group">
 							{Icons.map((_icon) => {
 								const iconName = _icon.val;
 								const isSelected = iconName === icon;
@@ -96,14 +100,16 @@ export default ({ attributes, setAttributes }) => {
 										variant={isSelected ? 'primary' : 'secondary'}
 										key={`pb-cv-note-icon-${iconName}`}
 										onClick={() => {
-											if (!isPro) return;
+											if (!isPro) {
+												return;
+											}
 											setAttributes({ icon: iconName });
 										}}
 									>
 										{iconName ? (
 											<i className={iconName}></i>
 										) : (
-											<span>{__('None', textDomain)}</span>
+											<span>{__('None', 'useful-blocks')}</span>
 										)}
 									</Button>
 								);

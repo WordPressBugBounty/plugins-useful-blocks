@@ -18,7 +18,6 @@ import {
 import pbIcon from '@blocks/icon';
 import MyToolbar from './_toolbar';
 import MySidebar from './_sidebar';
-import { textDomain } from '@blocks/config';
 
 /**
  * External dependencies
@@ -37,7 +36,7 @@ const { name, parent, category, keywords, supports } = metadata;
 const blockName = 'pb-button';
 
 registerBlockType(name, {
-	title: __('CV Botton', textDomain),
+	title: __('CV Botton', 'useful-blocks'),
 	icon: {
 		foreground: pbIcon.color,
 		src: pbIcon.button,
@@ -61,7 +60,7 @@ registerBlockType(name, {
 		},
 		btnEm: {
 			type: 'string',
-			default: __('必見', textDomain),
+			default: __('必見', 'useful-blocks'),
 		},
 		btnText: {
 			type: 'string',
@@ -72,7 +71,7 @@ registerBlockType(name, {
 			type: 'string',
 			source: 'html',
 			selector: '.pb-text-link__label',
-			default: __('Link to : ', textDomain),
+			default: __('Link to :', 'useful-blocks'),
 		},
 		linkUrl: {
 			type: 'string',
@@ -103,19 +102,10 @@ registerBlockType(name, {
 		},
 	},
 
-	edit: (props) => {
+	edit: function Edit(props) {
 		const { clientId, className, attributes, setAttributes } = props;
-		const {
-			btnEm,
-			btnText,
-			linkLabel,
-			url,
-			arrowIcon,
-			emIcon,
-			isShowLink,
-			isRound,
-			linkUrl,
-		} = attributes;
+		const { btnEm, btnText, linkLabel, url, arrowIcon, emIcon, isShowLink, isRound, linkUrl } =
+			attributes;
 		let blockClass = classnames(blockName, className);
 
 		if (isRound) {
@@ -145,7 +135,7 @@ registerBlockType(name, {
 
 				return theId;
 			},
-			[clientId]
+			[clientId],
 		);
 
 		let btnEmContent = null;
@@ -171,9 +161,9 @@ registerBlockType(name, {
 					<div className={`${blockName}__btn`}>
 						{btnEmContent}
 						<RichText
-							tagName='span'
+							tagName="span"
 							className={`${blockName}__text`}
-							placeholder={__('Button text…', textDomain)}
+							placeholder={__('Button text…', 'useful-blocks')}
 							value={btnText}
 							onChange={(value) => setAttributes({ btnText: value })}
 							allowedFormats={[]} //[ 'core/bold', 'core/link' ] とかで細かく指定できる
@@ -223,18 +213,16 @@ registerBlockType(name, {
 			btnEmContent = <span className={`${blockName}__em`}>{btnEm}</span>;
 		}
 
+		const linkTarget = isNewTab ? '_blank' : null;
+		const linkRel = rel || (isNewTab ? 'noreferrer' : null);
+
 		return (
 			<>
 				<div className={blockClass}>
-					<a
-						href={url}
-						className={`${blockName}__btn`}
-						target={isNewTab ? '_blank' : null}
-						rel={rel || null}
-					>
+					<a href={url} className={`${blockName}__btn`} target={linkTarget} rel={linkRel}>
 						{btnEmContent}
 						<RichText.Content
-							tagName='span'
+							tagName="span"
 							className={`${blockName}__text`}
 							value={btnText}
 						/>
@@ -251,8 +239,8 @@ registerBlockType(name, {
 						<a
 							href={url}
 							className={`pb-text-link__url`}
-							target={isNewTab ? '_blank' : null}
-							rel={rel || null}
+							target={linkTarget}
+							rel={linkRel}
 						>
 							{linkUrl || url}
 						</a>

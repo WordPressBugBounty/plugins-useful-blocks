@@ -3,6 +3,9 @@
   "name": "ponhiro-blocks/rating-graph-item",
   "title": "Graph",
   "category": "useful-blocks",
+  "keywords": [
+    "ub"
+  ],
   "supports": {
     "className": false
   },

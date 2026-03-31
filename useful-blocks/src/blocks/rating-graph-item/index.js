@@ -12,7 +12,7 @@ import { useMemo } from '@wordpress/element';
  */
 import icon from './_icon';
 import MySidebar from './_sidebar';
-import { textDomain, iconColor } from '@blocks/config';
+import { iconColor } from '@blocks/config';
 
 /**
  * External dependencies
@@ -32,16 +32,20 @@ const { name, apiVersion, parent, supports, category } = metadata;
  * 文字列をキャメルケースへ変換
  */
 function toCamelCase(str) {
-	if (typeof str !== 'string') return str;
+	if (typeof str !== 'string') {
+		return str;
+	}
 
 	// 順序変更用のアンダースコアを削除
 	str = str.replace('_', '');
 
 	const strs = str.split('-');
-	if (strs.length === 0) return str;
+	if (strs.length === 0) {
+		return str;
+	}
 
 	return strs
-		.map(function (word, index) {
+		.map(function (word) {
 			// 先頭の文字は小文字にする場合
 			// if (index === 0) {return word.toLowerCase();}
 
@@ -51,7 +55,9 @@ function toCamelCase(str) {
 }
 
 const migrateIconName = (iconName) => {
-	if (!iconName) return iconName;
+	if (!iconName) {
+		return iconName;
+	}
 
 	if (null !== iconName.match(/^fa/) && -1 !== iconName.indexOf(' fa-')) {
 		// fa-solid fa-earth-asia → FasEarthAsia
@@ -92,7 +98,7 @@ const blockName = 'pb-rating-graph';
 
 registerBlockType(name, {
 	apiVersion,
-	title: __('Graph', textDomain),
+	title: __('Graph', 'useful-blocks'),
 	icon: {
 		foreground: iconColor,
 		src: icon,
@@ -102,7 +108,7 @@ registerBlockType(name, {
 	supports,
 	parent,
 	attributes: metadata.attributes,
-	edit: ({ attributes, setAttributes }) => {
+	edit: function Edit({ attributes, setAttributes }) {
 		const {
 			graphLabel,
 			leftLabel,
@@ -127,6 +133,8 @@ registerBlockType(name, {
 			'data-max-step': maxStep,
 		});
 
+		// label01-label05 は eval 経由で参照されるため、ESLint が追跡できず不要と判定される
+		/* eslint-disable react-hooks/exhaustive-deps */
 		const scales = useMemo(() => {
 			const mapNums = maxStep === 5 ? [1, 2, 3, 4, 5] : [1, 2, 3];
 
@@ -136,11 +144,11 @@ registerBlockType(name, {
 				eval(`theLabrel = label0${num};`);
 				const labelTextComp = (
 					<RichText
-						tagName='span'
+						tagName="span"
 						className={classnames(`__label`, {
 							'is-null': RichText.isEmpty(theLabrel),
 						})}
-						placeholder='…'
+						placeholder="…"
 						value={theLabrel}
 						onChange={(val) => setAttributes({ [`label0${num}`]: val })}
 					/>
@@ -150,14 +158,14 @@ registerBlockType(name, {
 						<div
 							className={`${blockName}__scale`}
 							data-step={num}
-							data-check='1'
+							data-check="1"
 							key={`scale_key_${num}`}
 						>
 							<div className={`__shape -${markType}`}>
 								{'icon' === markType && (
 									<LsIcon icon={migrateIconName(iconClass)} />
 								)}
-								{'image' === markType && mediaUrl && <img src={mediaUrl} alt='' />}
+								{'image' === markType && mediaUrl && <img src={mediaUrl} alt="" />}
 							</div>
 							{labelTextComp}
 						</div>
@@ -181,7 +189,9 @@ registerBlockType(name, {
 			label03,
 			label04,
 			label05,
+			setAttributes,
 		]);
+		/* eslint-enable react-hooks/exhaustive-deps */
 
 		return (
 			<>
@@ -190,31 +200,31 @@ registerBlockType(name, {
 				</InspectorControls>
 				<div {...blockProps}>
 					<RichText
-						tagName='span'
+						tagName="span"
 						className={classnames(`${blockName}__label`, {
 							'is-null': RichText.isEmpty(graphLabel),
 						})}
-						placeholder={__('Graph Label', textDomain)}
+						placeholder={__('Graph Label', 'useful-blocks')}
 						value={graphLabel}
 						onChange={(val) => setAttributes({ graphLabel: val })}
 					/>
 					<div className={`${blockName}__wrap`}>
 						<RichText
-							tagName='div'
+							tagName="div"
 							className={classnames(`${blockName}__basis -left`, {
 								'is-null': RichText.isEmpty(leftLabel),
 							})}
-							placeholder={__('Label…', textDomain)}
+							placeholder={__('Label…', 'useful-blocks')}
 							value={leftLabel}
 							onChange={(val) => setAttributes({ leftLabel: val })}
 						/>
 						<div className={`${blockName}__axis`}>{scales}</div>
 						<RichText
-							tagName='div'
+							tagName="div"
 							className={classnames(`${blockName}__basis -right`, {
 								'is-null': RichText.isEmpty(rightLabel),
 							})}
-							placeholder={__('Label…', textDomain)}
+							placeholder={__('Label…', 'useful-blocks')}
 							value={rightLabel}
 							onChange={(val) => setAttributes({ rightLabel: val })}
 						/>
@@ -252,7 +262,7 @@ registerBlockType(name, {
 			let labelTextComp = null;
 			if (!RichText.isEmpty(theLabrel)) {
 				labelTextComp = (
-					<RichText.Content tagName='span' className='__label' value={theLabrel} />
+					<RichText.Content tagName="span" className="__label" value={theLabrel} />
 				);
 			}
 
@@ -261,7 +271,7 @@ registerBlockType(name, {
 					<div
 						className={`${blockName}__scale`}
 						data-step={num}
-						data-check='1'
+						data-check="1"
 						key={`scale_key_${num}`}
 					>
 						<div className={`__shape -${markType}`}>
@@ -269,7 +279,7 @@ registerBlockType(name, {
 							{'image' === markType && mediaUrl && (
 								<img
 									src={mediaUrl}
-									alt=''
+									alt=""
 									className={`wp-image-${mediaId} -no-lb`}
 								/>
 							)}
@@ -290,7 +300,7 @@ registerBlockType(name, {
 			<div {...blockProps}>
 				{!RichText.isEmpty(graphLabel) && (
 					<RichText.Content
-						tagName='span'
+						tagName="span"
 						className={`${blockName}__label`}
 						value={graphLabel}
 					/>

@@ -1,33 +1,30 @@
 {
-    "apiVersion": 2,
-    "name": "ponhiro-blocks/list",
-    "title": "Useful List",
-    "category": "useful-blocks",
-    "supports": {
-        "reusable": false,
-        "className": false
-    },
-    "keywords": [
-        "useful",
-        "list"
-    ],
-    "parent": [
-        "ponhiro-blocks/cv-box",
+	"apiVersion": 2,
+	"name": "ponhiro-blocks/list",
+	"title": "Useful List",
+	"category": "useful-blocks",
+	"supports": {
+		"reusable": false,
+		"className": false
+	},
+	"keywords": ["useful", "list", "ub"],
+	"parent": [
+		"ponhiro-blocks/cv-box",
 		"ponhiro-blocks/iconbox",
-        "ponhiro-blocks/compare-box-body-content"
-    ],
-    "attributes": {
-        "listTag": {
-            "type": "string",
-            "default": "ul"
-        },
-        "icon": {
-            "type": "string",
-            "default": "dot"
-        },
-        "showBorder": {
-            "type": "boolean",
-            "default": false
-        }
-    }
+		"ponhiro-blocks/compare-box-body-content"
+	],
+	"attributes": {
+		"listTag": {
+			"type": "string",
+			"default": "ul"
+		},
+		"icon": {
+			"type": "string",
+			"default": "dot"
+		},
+		"showBorder": {
+			"type": "boolean",
+			"default": false
+		}
+	}
 }

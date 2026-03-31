@@ -4,9 +4,7 @@ module.exports = {
 		require('autoprefixer')({
 			cascade: false,
 		}),
-		require('css-mqpacker')({
-			sort: true,
-		}),
+		require('postcss-sort-media-queries')(),
 		// require('postcss-mq-optimize'),
 		require('cssnano')({
 			preset: 'default',

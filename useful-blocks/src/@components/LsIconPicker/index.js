@@ -36,18 +36,18 @@ export default ({
 
 	/* eslint no-nested-ternary: 0 */
 	return (
-		<div className='ls-iconPicker'>
+		<div className="ls-iconPicker">
 			<Button
-				variant='secondary'
-				iconPosition='right'
+				variant="secondary"
+				iconPosition="right"
 				icon={chevronDown}
 				text={
 					!!svg ? (
-						<RawHTML className='ls-iconPicker__prev'>{svg}</RawHTML>
+						<RawHTML className="ls-iconPicker__prev">{svg}</RawHTML>
 					) : !!value ? (
-						<LsIcon icon={value} size='24px' className='ls-iconPicker__prev' />
+						<LsIcon icon={value} size="24px" className="ls-iconPicker__prev" />
 					) : (
-						<span className='ls-iconPicker__placeholder'>{TEXTS.search}</span>
+						<span className="ls-iconPicker__placeholder">{TEXTS.search}</span>
 					)
 				}
 				onClick={() => {
@@ -56,7 +56,7 @@ export default ({
 			/>
 			{clearable && (
 				<Button
-					className='-clear'
+					className="-clear"
 					isSmall
 					text={TEXTS.clear}
 					onClick={() => {

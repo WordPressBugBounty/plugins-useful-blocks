@@ -63,7 +63,7 @@
 			margin: 0 auto !important;
 		}
 
-		& + .pb-bar-graph__item {
+		+ .pb-bar-graph__item {
 			margin-top: 2.5em !important;
 
 			@include sp {

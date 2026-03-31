@@ -10,7 +10,6 @@ import { RichText, useBlockProps, store as blockEditorStore } from '@wordpress/b
  * Internal dependencies
  */
 import pbIcon from '@blocks/icon';
-import { textDomain } from '@blocks/config';
 
 /**
  * metadata
@@ -20,7 +19,7 @@ const { name, apiVersion, category, keywords, parent, supports } = metadata;
 
 registerBlockType(name, {
 	apiVersion,
-	title: __('Useful List Item', textDomain),
+	title: __('Useful List Item', 'useful-blocks'),
 	icon: {
 		foreground: pbIcon.color,
 		src: pbIcon.listItem,
@@ -30,7 +29,7 @@ registerBlockType(name, {
 	supports,
 	parent,
 	attributes: metadata.attributes,
-	edit: ({ attributes, setAttributes, onReplace, onRemove, clientId }) => {
+	edit: function Edit({ attributes, setAttributes, onReplace, onRemove, clientId }) {
 		const { content = '' } = attributes;
 		const { getBlock, getPreviousBlockClientId, getNextBlockClientId } =
 			useSelect(blockEditorStore);
@@ -46,9 +45,9 @@ registerBlockType(name, {
 		return (
 			<RichText
 				{...blockProps}
-				tagName='li'
+				tagName="li"
 				value={content || ''}
-				placeholder={__('Text…', textDomain)}
+				placeholder={__('Text…', 'useful-blocks')}
 				onChange={(value) => {
 					setAttributes({ content: value });
 				}}

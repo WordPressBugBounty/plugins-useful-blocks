@@ -1,3 +1,4 @@
+/* global alert, location, history */
 const { __ } = wp.i18n;
 
 (function ($) {
@@ -5,15 +6,21 @@ const { __ } = wp.i18n;
 	const ajaxToClearData = (actionName) => {
 		// pbVars 正常に取得できるか
 		const pbVars = window.pbVars;
-		if (pbVars === undefined) return;
+		if (pbVars === undefined) {
+			return;
+		}
 
 		// ajaxURL
 		const ajaxUrl = pbVars.ajaxUrl;
-		if (ajaxUrl === undefined) return;
+		if (ajaxUrl === undefined) {
+			return;
+		}
 
 		// nonceキー
 		const ajaxNonce = pbVars.ajaxNonce;
-		if (ajaxNonce === undefined) return;
+		if (ajaxNonce === undefined) {
+			return;
+		}
 
 		$.ajax({
 			type: 'POST',
@@ -52,7 +59,7 @@ const { __ } = wp.i18n;
 	// カラーパレット
 	$(function () {
 		$('.pb-colorpicker').wpColorPicker({
-			change(event, ui) {
+			change() {
 				// change イベントを発火させる。（setTimeout でちょっと遅らせないと選択した色が反映されない）
 				const $this = $(this);
 				setTimeout(function () {

@@ -3,7 +3,8 @@
   "title": "CV Image",
   "category": "useful-blocks",
   "keywords": [
-    "image"
+    "image",
+    "ub"
   ],
   "supports": {
     "reusable": false,
